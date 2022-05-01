@@ -1,6 +1,6 @@
 <view class="search-bar">
-  <view class="input-wrapper round">
-    <view class="icon-search"></view>
-    <input type="text" placeholder="SearchBar" />
+  <view class="input-wrapper">
+    <view class="icon icon-search"></view>
+    <input class="input" type="text" placeholder-class="placeholder" placeholder="{{placeholder}}" disabled="{{disabled}}" bindinput="input" />
   </view>
 </view>

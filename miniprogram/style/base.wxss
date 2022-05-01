@@ -1,4 +1,4 @@
-:root {
+page {
   /* 全局字体样式 */
   --fontSizeSmallS: 20rpx;
   --fontSizeSmall: 24rpx;
@@ -61,8 +61,17 @@
   --greyShadow: rgba(114, 130, 138, 0.2);
   --grayShadow: rgba(114, 130, 138, 0.2);
   --blackShadow: rgba(26, 26, 26, 0.2);
-}
 
+  --radiusSmall: 12rpx;
+  --radiusNormal: 20rpx;
+  --radiusRound: 36rpx;
+  --radiusCircle: 50%;
+
+  font-size: var(--fontSizeMediumX);
+  color: var(--black);
+  background: var(--ghostWhite);
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+}
 page,
 view,
 input,
@@ -77,19 +86,4 @@ navigator {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-page {
-  font-size: var(--fontSizeMediumX);
-  color: var(--black);
-  background-color: var(--ghostWhite);
-  font-family: Helvetica Neue, Helvetica, sans-serif;
-}
-
-.circle {
-  border-radius: 50%;
-}
-
-.round {
-  border-radius: 24rpx;
 }
