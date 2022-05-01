@@ -1,0 +1,6 @@
+<view class="container">
+  <NavBar title='个人中心' color='#000'></NavBar>
+  <view class="content">
+    <button type="primary">User</button>
+  </view>
+</view>

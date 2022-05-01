@@ -1,0 +1,17 @@
+.search-bar {
+  width: 100%;
+  height: 60rpx;
+}
+
+.search-bar .input-wrapper {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  font-size: var(--fontSizeLarge);
+  background: var(--purpleLight);
+}
+
+.search-bar .input-wrapper input {
+  line-height: 100%;
+}

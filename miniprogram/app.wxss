@@ -1,0 +1,12 @@
+@import 'style/base.wxss';
+@import 'style/icon.wxss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container .content {
+  flex: 1;
+}

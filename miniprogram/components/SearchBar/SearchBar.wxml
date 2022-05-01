@@ -1,0 +1,6 @@
+<view class="search-bar">
+  <view class="input-wrapper round">
+    <view class="icon-search"></view>
+    <input type="text" placeholder="SearchBar" />
+  </view>
+</view>

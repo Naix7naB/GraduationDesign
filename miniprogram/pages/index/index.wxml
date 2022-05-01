@@ -1,0 +1,7 @@
+<view class="container">
+  <NavBar title='首页' color='#000' />
+  <view class="content">
+    <van-button type="info" size="large" bindtap="click">Home</van-button>
+    <SearchBar></SearchBar>
+  </view>
+</view>
