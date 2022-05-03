@@ -1,6 +1,6 @@
 <view class="search-bar">
   <view class="input-wrapper">
-    <view class="icon icon-search"></view>
+    <i class="search BXicon-search"></i>
     <input class="input" type="text" placeholder-class="placeholder" placeholder="{{placeholder}}" disabled="{{disabled}}" bindinput="input" />
   </view>
 </view>

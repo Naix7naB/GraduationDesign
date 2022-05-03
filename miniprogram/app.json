@@ -5,6 +5,15 @@
     "pages/user/user",
     "pages/search/search"
   ],
+  "subPackages": [
+    {
+      "root": "packageSearch",
+      "name": "search",
+      "pages": [
+        "pages/search/search"
+      ]
+    }
+  ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationStyle": "custom"

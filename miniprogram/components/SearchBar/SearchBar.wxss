@@ -9,6 +9,7 @@
 
 .search-bar .input-wrapper {
   display: flex;
+  align-items: center;
   width: 90%;
   height: 80rpx;
   padding: 20rpx 40rpx;
@@ -16,13 +17,9 @@
   background: var(--ghostWhite);
 }
 
-.search-bar .input-wrapper .icon {
+.search-bar .input-wrapper .search {
   margin-right: 16rpx;
   font-size: var(--fontSizeLarge);
-}
-
-.search-bar .input-wrapper .icon::before {
-  vertical-align: -4rpx;
 }
 
 .search-bar .input-wrapper .input {
@@ -32,7 +29,7 @@
   font-size: var(--fontSizeMedium);
 }
 
-.search-bar .input-wrapper .icon,
+.search-bar .input-wrapper .search,
 .search-bar .input-wrapper .placeholder {
   color: var(--blackShadow);
 }

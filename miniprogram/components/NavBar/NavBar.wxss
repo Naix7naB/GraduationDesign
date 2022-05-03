@@ -1,4 +1,5 @@
 .nav {
+  z-index: 99;
   position: relative;
   width: 100%;
   background: var(--bgTheme);
@@ -45,6 +46,6 @@
   transform: translate(-50%, -50%);
 }
 
-.nav .menu-btn .btn-wrapper .icon {
+.nav .menu-btn .btn-wrapper .btn {
   font-size: 40rpx;
 }

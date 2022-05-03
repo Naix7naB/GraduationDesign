@@ -13,20 +13,18 @@ Component({
 
   /* 组件的方法列表 */
   methods: {
-    catch() {
-      /* 阻止事件冒泡 */
-      return true;
-    },
+    /* 阻止事件冒泡 */
+    noop() {},
+    /* 显示弹窗 */
     show() {
-      /* 显示弹窗 */
       this.setData({ visible: true });
     },
+    /* 隐藏弹窗 */
     hide() {
-      /* 隐藏弹窗 */
       this.setData({ visible: false });
     },
+    /* 点击登录 */
     agree() {
-      /* 点击登录 */
       this.triggerEvent('login');
     },
   },

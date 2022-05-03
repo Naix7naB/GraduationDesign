@@ -1,10 +1,18 @@
 <view class="container">
   <NavBar title='个人中心' />
+  <!-- 登录弹窗 -->
+  <Dialog id="dialog" bind:login="login" />
   <view class="content">
-    <!-- 登录弹窗 -->
-    <Dialog id="dialog" bind:login="login" />
     <!-- 用户信息 -->
-    <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="showDialog"></UserInfo>
-    <button type="primary" bindtap="onclick">click</button>
+    <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="show"></UserInfo>
+    <view class="groups">
+      <van-cell-group class="group">
+        <van-cell title="积分商城" is-link />
+        <van-cell title="点歌券" is-link />
+      </van-cell-group>
+      <van-cell-group class="group">
+        <van-cell title="选择学校" label="学校名称" is-link clickable />
+      </van-cell-group>
+    </view>
   </view>
 </view>

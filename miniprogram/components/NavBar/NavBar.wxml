@@ -4,8 +4,8 @@
   <!-- 胶囊按钮 -->
   <view class="menu-btn" wx:if="{{showIcon}}" style="{{menuStyle}}">
     <view class="btn-wrapper" style="{{menuBtnStyle}}">
-      <view class="icon icon-back" bindtap="stepBack"></view>
-      <view class="icon icon-home" bindtap="returnHome"></view>
+      <view class="btn BXicon-back" bindtap="stepBack"></view>
+      <view class="btn BXicon-home" bindtap="returnHome"></view>
     </view>
   </view>
 </view>

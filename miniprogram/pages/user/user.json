@@ -2,6 +2,8 @@
   "usingComponents": {
     "NavBar": "/components/NavBar/NavBar",
     "UserInfo": "/components/UserInfo/UserInfo",
-    "Dialog": "/components/Dialog/Dialog"
+    "Dialog": "/components/Dialog/Dialog",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

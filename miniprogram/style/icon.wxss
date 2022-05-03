@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'iconfont';
+  font-family: 'NaixnaB';
   src: url('//at.alicdn.com/t/font_3367050_iyk55gz411.woff2?t=1651593735798') format('woff2'),
     url('//at.alicdn.com/t/font_3367050_iyk55gz411.woff?t=1651593735798') format('woff'),
     url('//at.alicdn.com/t/font_3367050_iyk55gz411.ttf?t=1651593735798') format('truetype');
@@ -7,9 +7,9 @@
   font-style: normal;
 }
 
-[class^='icon-'],
-[class*='icon-'] {
-  font-family: 'iconfont' !important;
+[class^='BXicon-'],
+[class*='BXicon-'] {
+  font-family: 'NaixnaB' !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -21,94 +21,94 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-check:before {
+.BXicon-check:before {
   content: '\e645';
 }
 
-.icon-close:before {
+.BXicon-close:before {
   content: '\e646';
 }
 
-.icon-discover:before {
+.BXicon-discover:before {
   content: '\e67e';
 }
 
-.icon-discover-fill:before {
+.BXicon-discover-fill:before {
   content: '\e6ba';
 }
 
-.icon-wechat:before {
+.BXicon-wechat:before {
   content: '\e603';
 }
 
-.icon-home:before {
+.BXicon-home:before {
   content: '\e601';
 }
 
-.icon-home-fill:before {
+.BXicon-home-fill:before {
   content: '\e602';
 }
 
-.icon-user-fill:before {
+.BXicon-user-fill:before {
   content: '\e75d';
 }
 
-.icon-user:before {
+.BXicon-user:before {
   content: '\e75e';
 }
 
-.icon-list:before {
+.BXicon-list:before {
   content: '\e693';
 }
 
-.icon-music-list:before {
+.BXicon-music-list:before {
   content: '\e636';
 }
 
-.icon-points:before {
+.BXicon-points:before {
   content: '\e66b';
 }
 
-.icon-points-fill:before {
+.BXicon-points-fill:before {
   content: '\e670';
 }
 
-.icon-school:before {
+.BXicon-school:before {
   content: '\e67d';
 }
 
-.icon-degree:before {
+.BXicon-degree:before {
   content: '\e680';
 }
 
-.icon-list-fill:before {
+.BXicon-list-fill:before {
   content: '\e661';
 }
 
-.icon-check-fill:before {
+.BXicon-check-fill:before {
   content: '\e656';
 }
 
-.icon-check-plain:before {
+.BXicon-check-plain:before {
   content: '\e657';
 }
 
-.icon-close-fill:before {
+.BXicon-close-fill:before {
   content: '\e658';
 }
 
-.icon-close-plain:before {
+.BXicon-close-plain:before {
   content: '\e659';
 }
 
-.icon-back:before {
+.BXicon-back:before {
   content: '\e679';
 }
 
-.icon-delete:before {
+.BXicon-delete:before {
   content: '\e6b4';
 }
 
-.icon-search:before {
+.BXicon-search:before {
   content: '\e600';
 }

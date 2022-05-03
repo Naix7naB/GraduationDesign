@@ -1,15 +1,12 @@
-<van-transition show="{{visible}}" name="fade">
-  <view class="dialog" bindtap="hide">
-    <view class="mask"></view>
-    <view class="wrapper" catchtap="catch">
-      <i class="close icon-close" bindtap="hide"></i>
-      <view class="wrapper-content">
-        <view class="title">登录或注册</view>
-        <view class="btn" bindtap="agree">
-          <i class="wechat icon-wechat"></i>
-          <text class="txt">微信账号快速登录</text>
-        </view>
+<van-overlay show="{{visible}}" bind:click='hide'>
+  <view class="dialog" catchtap="noop">
+    <i class="close BXicon-close" bindtap="hide"></i>
+    <view class="dialog-content">
+      <view class="title">登录或注册</view>
+      <view class="btn" bindtap="agree">
+        <i class="wechat BXicon-wechat"></i>
+        <text class="txt">微信账号快速登录</text>
       </view>
     </view>
   </view>
-</van-transition>
+</van-overlay>

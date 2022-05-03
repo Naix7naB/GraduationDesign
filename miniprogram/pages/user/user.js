@@ -1,6 +1,5 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from '../../utils/store';
-import storage from '../../utils/storage.js';
 
 const app = getApp();
 
@@ -11,7 +10,7 @@ Page({
   },
 
   /* 展示弹窗 */
-  showDialog() {
+  show() {
     this.selectComponent('#dialog').show();
   },
 
