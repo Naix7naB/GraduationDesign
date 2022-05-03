@@ -1,11 +1,8 @@
 @font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_3367050_8u0jg4ynvw4.woff2?t=1651164622085')
-      format('woff2'),
-    url('//at.alicdn.com/t/font_3367050_8u0jg4ynvw4.woff?t=1651164622085')
-      format('woff'),
-    url('//at.alicdn.com/t/font_3367050_8u0jg4ynvw4.ttf?t=1651164622085')
-      format('truetype');
+  src: url('//at.alicdn.com/t/font_3367050_iyk55gz411.woff2?t=1651593735798') format('woff2'),
+    url('//at.alicdn.com/t/font_3367050_iyk55gz411.woff?t=1651593735798') format('woff'),
+    url('//at.alicdn.com/t/font_3367050_iyk55gz411.ttf?t=1651593735798') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -22,6 +19,26 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before {
+  content: '\e645';
+}
+
+.icon-close:before {
+  content: '\e646';
+}
+
+.icon-discover:before {
+  content: '\e67e';
+}
+
+.icon-discover-fill:before {
+  content: '\e6ba';
+}
+
+.icon-wechat:before {
+  content: '\e603';
 }
 
 .icon-home:before {
@@ -72,7 +89,7 @@
   content: '\e656';
 }
 
-.icon-check:before {
+.icon-check-plain:before {
   content: '\e657';
 }
 
@@ -80,7 +97,7 @@
   content: '\e658';
 }
 
-.icon-close:before {
+.icon-close-plain:before {
   content: '\e659';
 }
 

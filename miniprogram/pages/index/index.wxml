@@ -2,6 +2,12 @@
   <NavBar title='首页' color='#000' />
   <view class="content">
     <SearchBar placeholder="搜索歌曲" bindtap="toSearch" disabled />
-    <view></view>
+    <view class="test">公告栏</view>
+    <swiper class="announcement">
+      <swiper-item class="item">公告内容</swiper-item>
+      <swiper-item class="item">公告内容</swiper-item>
+      <swiper-item class="item">公告内容</swiper-item>
+    </swiper>
+    <view class="test">滚动区</view>
   </view>
 </view>

@@ -1,0 +1,17 @@
+<view class="unentered" wx:if="{{!isLogin}}" bindtap="onTap">
+  <text class="title">未登录／注册</text>
+  <text class="desc">点击头像可登录/注册</text>
+</view>
+
+<view class="user-info" wx:if="{{isLogin}}">
+  <view class="avatar">
+    <image src="{{userInfo.avatarUrl}}" mode="aspectFit" />
+  </view>
+  <view class="detail">
+    <text class="name">{{userInfo.nickName}}</text>
+    <text class="point">积分: {{userInfo.point}}</text>
+  </view>
+  <view class="sign">
+    <text>签到</text>
+  </view>
+</view>

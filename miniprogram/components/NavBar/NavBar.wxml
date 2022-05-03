@@ -1,11 +1,9 @@
-<view class="nav" style="height:{{navHeight}}px; background:{{navBgColor}}">
+<view class="nav" style="{{navStyle}}">
   <!-- 导航栏标题 -->
-  <view class="title" style="line-height:{{menuHeight}}px; margin-top: {{menuTop}}px; color:{{titleColor}}">
-    {{ title }}
-  </view>
+  <view class="title" style="{{titleStyle}}">{{ title }}</view>
   <!-- 胶囊按钮 -->
-  <view class="menu-btn" wx:if="{{showIcon}}" style="width:{{menuWidth}}px;height:{{menuHeight}}px;top:{{menuTop}}px;left:{{menuRight}}px;">
-    <view class="btn-wrapper" style="color:{{menuColor}}; background:{{menuBgColor}}">
+  <view class="menu-btn" wx:if="{{showIcon}}" style="{{menuStyle}}">
+    <view class="btn-wrapper" style="{{menuBtnStyle}}">
       <view class="icon icon-back" bindtap="stepBack"></view>
       <view class="icon icon-home" bindtap="returnHome"></view>
     </view>

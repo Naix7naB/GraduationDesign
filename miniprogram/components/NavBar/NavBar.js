@@ -17,31 +17,40 @@ Component({
       type: String,
       value: '导航栏标题',
     },
-    titleColor: {
-      type: String,
-      value: '#000000',
-    },
-    menuColor: {
-      type: String,
-      value: '#ffffff',
-    },
-    menuBgColor: {
-      type: String,
-      value: '#b9b9b9',
-    },
-    navBgColor: {
-      type: String,
-      value: '#ffffff',
-    },
+    titleColor: String,
+    menuColor: String,
+    menuBgColor: String,
+    navBgColor: String,
   },
 
   /* 组件的初始数据 */
   data: {
-    navHeight: app.globalData.navHeight,
-    menuWidth: app.globalData.menuWidth,
-    menuHeight: app.globalData.menuHeight,
-    menuTop: app.globalData.menuTop,
-    menuRight: app.globalData.menuRight,
+    navStyle: `height:${app.globalData.navHeight}px;`,
+    titleStyle: `line-height:${app.globalData.menuHeight}px;margin-top:${app.globalData.menuTop}px;`,
+    menuStyle: `width:${app.globalData.menuWidth}px;height:${app.globalData.menuHeight}px;top:${app.globalData.menuTop}px;left:${app.globalData.menuRight}px;`,
+    menuBtnStyle: '',
+  },
+
+  /* 组件的数据监视 */
+  observers: {
+    navBgColor(newVal) {
+      const navStyle = this.data.navStyle + `background:${newVal}`;
+      this.setData({ navStyle });
+    },
+    titleColor(newVal) {
+      const titleStyle = this.data.titleStyle + `color:${newVal}`;
+      this.setData({ titleStyle });
+    },
+    'menuColor, menuBgColor': function (newColor, newBgColor) {
+      let menuBtnStyle = this.data.menuBtnStyle;
+      if (newColor) {
+        menuBtnStyle += `color:${newColor};`
+      }
+      if (newBgColor) {
+        menuBtnStyle += `background:${newBgColor};`
+      }
+      this.setData({ menuBtnStyle });
+    },
   },
 
   /* 组件的方法列表 */

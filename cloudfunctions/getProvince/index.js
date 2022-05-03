@@ -7,8 +7,16 @@ const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  // const res = await wx.getUserProfile({ desc: 'desc' });
+  const { data } = await db
+    .collection('province')
+    .field({
+      province: true,
+    })
+    .get();
+
+  const provinceList = data.map((item) => item.province);
+
   return {
-    test: res,
+    provinceList,
   };
 };

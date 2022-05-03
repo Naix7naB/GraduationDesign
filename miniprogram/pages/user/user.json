@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar"
+    "NavBar": "/components/NavBar/NavBar",
+    "UserInfo": "/components/UserInfo/UserInfo",
+    "Dialog": "/components/Dialog/Dialog"
   }
 }

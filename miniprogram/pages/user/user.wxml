@@ -1,6 +1,10 @@
 <view class="container">
-  <NavBar title='个人中心' color='#000'></NavBar>
+  <NavBar title='个人中心' />
   <view class="content">
-    <button type="primary">User</button>
+    <!-- 登录弹窗 -->
+    <Dialog id="dialog" bind:login="login" />
+    <!-- 用户信息 -->
+    <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="showDialog"></UserInfo>
+    <button type="primary" bindtap="onclick">click</button>
   </view>
 </view>

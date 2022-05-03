@@ -1,13 +1,15 @@
 .nav {
   position: relative;
   width: 100%;
+  background: var(--bgTheme);
 }
 
 .nav .title {
   width: 40%;
   margin: 0 auto;
   text-align: center;
-  font-size: 36rpx;
+  color: var(--white);
+  font-size: var(--fontSizeLarge);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -15,7 +17,7 @@
 
 .nav .menu-btn {
   position: absolute;
-  border: 2rpx solid #b9b9b9;
+  border: 2rpx solid var(--grey);
   border-radius: 40rpx;
   overflow: hidden;
 }
@@ -27,6 +29,8 @@
   align-items: center;
   height: 100%;
   padding: 0 20rpx;
+  color: var(--white);
+  background: var(--blackShadow);
 }
 
 .nav .menu-btn .btn-wrapper::before {
@@ -37,7 +41,7 @@
   left: 50%;
   width: 1rpx;
   height: 32rpx;
-  background: #ffffff;
+  background: var(--white);
   transform: translate(-50%, -50%);
 }
 

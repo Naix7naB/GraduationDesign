@@ -9,4 +9,5 @@
 
 .container .content {
   flex: 1;
+  position: relative;
 }

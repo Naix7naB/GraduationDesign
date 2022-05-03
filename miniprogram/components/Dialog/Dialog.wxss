@@ -1,0 +1,70 @@
+.dialog {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.dialog .mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dialog .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64%;
+  height: 20%;
+  background: var(--white);
+  transform: translate(-50%, -50%);
+}
+
+.dialog .wrapper .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 16rpx;
+  color: var(--grey);
+  font-weight: 600;
+  font-size: var(--fontSizeLarge);
+}
+
+.dialog .wrapper .wrapper-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}
+
+.dialog .wrapper .wrapper-content .title {
+  font-weight: 800;
+  font-size: var(--fontSizeLarge);
+}
+
+.dialog .wrapper .wrapper-content .btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: var(--white);
+  border-radius: var(--radiusSmallS);
+  background: var(--bgTheme);
+}
+
+.dialog .wrapper .wrapper-content .btn .wechat {
+  margin-right: 10rpx;
+  vertical-align: -2rpx;
+  font-size: var(--fontSizeLarge);
+}
+
+.dialog .wrapper .wrapper-content .btn .txt {
+  font-size: var(--fontSizeMedium);
+}
