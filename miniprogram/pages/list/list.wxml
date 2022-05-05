@@ -1,6 +1,3 @@
-<view class="container">
-  <NavBar title='点歌列表' color='#000'></NavBar>
-  <view class="content">
-    <button type="primary">List</button>
-  </view>
+<view class="home">
+  <button type="primary">List</button>
 </view>

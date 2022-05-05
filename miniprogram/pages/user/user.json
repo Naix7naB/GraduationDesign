@@ -1,9 +1,9 @@
 {
+  "navigationBarTitleText": "我的",
   "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar",
     "UserInfo": "/components/UserInfo/UserInfo",
     "Dialog": "/components/Dialog/Dialog",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index"
+    "van-cell": "/components/vant/cell/index",
+    "van-cell-group": "/components/vant/cell-group/index"
   }
 }

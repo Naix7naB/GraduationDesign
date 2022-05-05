@@ -3,7 +3,7 @@
   <text class="desc">点击头像可登录/注册</text>
 </view>
 
-<view class="user-info" wx:if="{{isLogin}}">
+<view class="user-info" wx:else>
   <view class="avatar">
     <image src="{{userInfo.avatarUrl}}" mode="aspectFit" />
   </view>

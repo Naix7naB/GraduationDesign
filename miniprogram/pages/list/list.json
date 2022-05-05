@@ -1,5 +1,4 @@
 {
-  "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar"
-  }
+  "navigationBarTitleText": "点歌列表",
+  "usingComponents": {}
 }

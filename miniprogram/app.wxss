@@ -1,6 +1,13 @@
 @import 'style/base.wxss';
 @import 'style/icon.wxss';
 
+.home {
+  width: 100%;
+  height: 100vh;
+  background: var(--ghostWhite);
+  overflow: hidden;
+}
+
 .container {
   display: flex;
   flex-direction: column;

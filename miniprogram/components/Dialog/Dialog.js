@@ -1,4 +1,3 @@
-// components/Dialog/Dialog.js
 Component({
   /* 组件的选项 */
   options: {

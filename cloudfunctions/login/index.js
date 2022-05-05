@@ -14,9 +14,10 @@ exports.main = async (event, context) => {
       openid: event.openid,
     })
     .get();
-  const temp = res.data;
-  if (!temp.length) {
+
+  if (!res.data.length) {
     try {
+      /* 新增用户信息 */
       const { _id } = await db.collection('user').add({
         data: {
           openid: event.openid,
@@ -26,15 +27,17 @@ exports.main = async (event, context) => {
           avatarUrl: event.avatarUrl,
           point: 0,
           createTime: new Date(),
-          isAdmin: 0,
+          userType: 0,
         },
       });
+      /* 查询并返回用户信息 */
       const res = await db.collection('user').doc(_id).get();
       data = {
         nickName: res.data.nickName,
         gender: res.data.gender,
         avatarUrl: res.data.avatarUrl,
         point: res.data.point,
+        userType: res.data.userType,
       };
       type = 'success';
       message = '注册成功!';
@@ -45,10 +48,11 @@ exports.main = async (event, context) => {
     }
   } else {
     data = {
-      nickName: temp[0].nickName,
-      gender: temp[0].gender,
-      avatarUrl: temp[0].avatarUrl,
-      point: temp[0].point,
+      nickName: res.data[0].nickName,
+      gender: res.data[0].gender,
+      avatarUrl: res.data[0].avatarUrl,
+      point: res.data[0].point,
+      userType: res.data[0].userType,
     };
     type = 'success';
     message = '登录成功!';

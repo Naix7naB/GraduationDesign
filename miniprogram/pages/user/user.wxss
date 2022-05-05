@@ -1,7 +1,3 @@
-.groups {
-  z-index: -1;
-}
-
-.groups .group {
-  margin-top: 20rpx;
+.group {
+  margin-bottom: 20rpx;
 }

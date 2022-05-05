@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   background: var(--bgTheme);
+  overflow: hidden;
 }
 
 .nav .title {

@@ -1,0 +1,15 @@
+.content .form .btn {
+  width: 90%;
+  margin: 32rpx auto;
+  color: var(--white);
+  background: var(--bgTheme);
+}
+
+.toolbar {
+  padding: 0 20rpx;
+}
+
+.toolbar .van-picker__cancel,
+.toolbar .van-picker__confirm {
+  font-size: var(--fontSizeMediumX);
+}

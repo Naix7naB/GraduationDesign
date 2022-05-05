@@ -1,18 +1,31 @@
+import { getFilePath } from '../../utils/index';
+import storage from '../../utils/storage';
+
 Page({
   /* 页面的初始数据 */
-  data: {},
+  data: {
+    picUrl: '',
+  },
 
-  toSearch() {
-    /* 跳转搜索页 */
+  /* 跳转搜索页 */
+  toOrdering() {
     wx.navigateTo({
-      url: '/pages/search/search',
+      url: '/pages/order/order',
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {},
+  /* 生命周期函数--监听页面加载 */
+  onLoad: function (options) {
+    const url = storage.getLocal('_defaultPic_', '');
+    if (url) {
+      this.setData({ picUrl: url });
+    } else {
+      getFilePath().then(({ url }) => {
+        this.setData({ picUrl: url });
+        storage.setLocal('_defaultPic_', url);
+      });
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

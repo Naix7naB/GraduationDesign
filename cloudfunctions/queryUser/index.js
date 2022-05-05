@@ -22,8 +22,8 @@ exports.main = async (event, context) => {
   } else {
     msg = '查询成功';
     type = 'success';
-    const { avatarUrl, nickName, gender, point } = data[0];
-    result = { avatarUrl, nickName, gender, point };
+    const { avatarUrl, nickName, gender, point, userType } = data[0];
+    result = { avatarUrl, nickName, gender, point, userType };
   }
 
   return {

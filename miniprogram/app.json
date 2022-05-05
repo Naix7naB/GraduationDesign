@@ -3,20 +3,13 @@
     "pages/index/index",
     "pages/list/list",
     "pages/user/user",
-    "pages/search/search"
-  ],
-  "subPackages": [
-    {
-      "root": "packageSearch",
-      "name": "search",
-      "pages": [
-        "pages/search/search"
-      ]
-    }
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationStyle": "custom"
+    "navigationBarBackgroundColor": "#4169e1",
+    "navigationBarTitleText": "蛙蛙点歌台",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#333333",
@@ -25,7 +18,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
+        "text": "主页",
         "iconPath": "/static/icon/home.png",
         "selectedIconPath": "/static/icon/home-fill.png"
       },

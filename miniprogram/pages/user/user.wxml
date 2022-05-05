@@ -1,18 +1,19 @@
-<view class="container">
-  <NavBar title='个人中心' />
+<scroll-view class="home" scroll-y refresher-enabled>
   <!-- 登录弹窗 -->
   <Dialog id="dialog" bind:login="login" />
-  <view class="content">
-    <!-- 用户信息 -->
-    <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="show"></UserInfo>
-    <view class="groups">
-      <van-cell-group class="group">
-        <van-cell title="积分商城" is-link />
-        <van-cell title="点歌券" is-link />
-      </van-cell-group>
-      <van-cell-group class="group">
-        <van-cell title="选择学校" label="学校名称" is-link clickable />
-      </van-cell-group>
-    </view>
-  </view>
-</view>
+  <!-- 用户信息 -->
+  <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="show"></UserInfo>
+  <van-cell-group custom-class="group">
+    <van-cell title="个人中心" is-link clickable />
+    <van-cell title="积分商城" is-link clickable />
+    <van-cell title="点歌券" is-link clickable />
+  </van-cell-group>
+  <van-cell-group custom-class="group">
+    <van-cell title="选择学校" label="学校名称" is-link clickable />
+  </van-cell-group>
+  <van-cell-group custom-class="group">
+    <van-cell title="反馈与帮助" is-link clickable />
+    <van-cell title="关于" is-link clickable />
+    <van-cell title="设置" is-link clickable />
+  </van-cell-group>
+</scroll-view>
