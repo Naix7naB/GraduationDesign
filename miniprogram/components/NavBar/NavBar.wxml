@@ -2,7 +2,7 @@
   <!-- 导航栏标题 -->
   <view class="title" style="{{titleStyle}}">{{ title }}</view>
   <!-- 胶囊按钮 -->
-  <view class="menu-btn" wx:if="{{showIcon}}" style="{{menuStyle}}">
+  <view class="menu-btn {{menuBorder?'menuBorder':''}}" wx:if="{{showIcon}}" style="{{menuStyle}}">
     <view class="btn-wrapper" style="{{menuBtnStyle}}">
       <view class="btn BXicon-back" bindtap="stepBack"></view>
       <view class="btn BXicon-home" bindtap="returnHome"></view>

@@ -17,6 +17,10 @@ Component({
       type: String,
       value: '导航栏标题',
     },
+    menuBorder: {
+      type: Boolean,
+      value: false,
+    },
     titleColor: String,
     menuColor: String,
     menuBgColor: String,
@@ -44,10 +48,10 @@ Component({
     'menuColor, menuBgColor': function (newColor, newBgColor) {
       let menuBtnStyle = this.data.menuBtnStyle;
       if (newColor) {
-        menuBtnStyle += `color:${newColor};`
+        menuBtnStyle += `color:${newColor};`;
       }
       if (newBgColor) {
-        menuBtnStyle += `background:${newBgColor};`
+        menuBtnStyle += `background:${newBgColor};`;
       }
       this.setData({ menuBtnStyle });
     },

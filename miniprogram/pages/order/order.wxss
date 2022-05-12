@@ -1,10 +1,25 @@
-.content .form .btn {
+.container .title {
+  height: 140rpx;
+  line-height: 150rpx;
+  margin-bottom: 20rpx;
+  background: var(--white);
+}
+
+.container .title .txt {
+  padding: 0 40rpx;
+  font-size: 60rpx;
+  font-weight: 200;
+  color: var(--blueLight);
+}
+
+.container .content .submit {
   width: 90%;
   margin: 32rpx auto;
   color: var(--white);
   background: var(--bgTheme);
 }
 
+/* van-picker自定义类名 */
 .toolbar {
   padding: 0 20rpx;
 }

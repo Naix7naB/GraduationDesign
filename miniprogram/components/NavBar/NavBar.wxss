@@ -19,9 +19,12 @@
 
 .nav .menu-btn {
   position: absolute;
-  border: 2rpx solid var(--grey);
   border-radius: 40rpx;
   overflow: hidden;
+}
+
+.nav .menu-btn.menuBorder {
+  border: 2rpx solid var(--grey);
 }
 
 .nav .menu-btn .btn-wrapper {

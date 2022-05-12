@@ -1,18 +1,22 @@
 <view class="container">
-  <NavBar title="点歌" showIcon></NavBar>
-  <van-popup show="{{visible}}" position="bottom" bind:close="hide" round>
+  <NavBar title="" navBgColor="#fff" showIcon />
+  <view class="title"><text class="txt">发起点歌</text></view>
+  <!-- 弹窗选择器 -->
+  <van-popup show="{{visible}}" position="bottom" round>
     <van-picker columns="{{columns}}" show-toolbar toolbar-class="toolbar" bind:cancel="hide" bind:confirm="confirm" />
   </van-popup>
   <view class="content">
-    <form class="form" bindsubmit="submit">
+    <!-- 表单 -->
+    <form bindsubmit="submit">
       <van-field label="歌曲" name="song" placeholder="请输入歌曲名" required />
       <van-field label="歌手" name="singer" placeholder="请输入歌手名" required />
       <van-field label="点歌人" name="ordering" placeholder="点歌的人的名字" required />
       <van-field label="点给谁" name="ordered" placeholder="被点歌人的名字" />
       <van-field label="留言" name="comment" type="textarea" placeholder="写下你点歌的故事吧" autosize />
-      <van-field label="时间" name="schedule" value="{{showDate}}" placeholder="请选择时间" bind:click-input="show" required readonly />
+      <van-field label="时间" name="schedule" value="{{showDate}}" placeholder="请选择时间" bindtap="show" required readonly is-link />
       <van-field label="注意" value="有星号为必填项，名字最好是真实姓名" readonly />
-      <button class="btn" form-type="submit">提交</button>
+      <button class="submit" form-type="submit">提交</button>
     </form>
+    <MyField></MyField>
   </view>
 </view>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-cell": "/components/vant/cell/index"
+  }
+}
