@@ -4,7 +4,7 @@
   focus="{{ focus }}"
   cursor="{{ cursor }}"
   value="{{ innerValue }}"
-  auto-focus="{{ autoFocus }}"
+  focus="{{ focus }}"
   disabled="{{ disabled || readonly }}"
   maxlength="{{ maxlength }}"
   placeholder="{{ placeholder }}"
