@@ -6,12 +6,14 @@ export function formatTime(delta) {
   const YY = _time_.getFullYear() + '';
   const MM = (_time_.getMonth() + 1 + '').padStart(2, '0');
   const DD = (_time_.getDate() + '').padStart(2, '0');
-  // const currentDate = new Date(timestamp);
-  return `${YY}-${MM}-${DD}`;
+  return {
+    timestamp,
+    date: `${YY}-${MM}-${DD}`,
+  };
 }
 
 /* 获取资源url */
-export async function getFilePath(name = 'audio') {
+export async function getFilePath(name = 'lyun') {
   const base = 'cloud://naixnab-5g2whrh799a6162e.6e61-naixnab-5g2whrh799a6162e-1311602487/images/';
   const fileName = `${name}.png`;
   const fileID = base + fileName;

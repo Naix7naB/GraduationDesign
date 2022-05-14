@@ -4,7 +4,7 @@ node_modules
 /dist
 
 project.config.json
-project.provate.config.json
+project.private.config.json
 sitemap.json
 
 # local env files

@@ -1,5 +1,7 @@
 import { formatTime } from '../../utils/index';
 
+const app = getApp();
+
 const schedule = {
   day: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
   time: ['中午', '傍晚'],
@@ -11,6 +13,7 @@ Page({
     visible: false,
     columns: [],
     showDate: '',
+    chooseDate: null,
   },
 
   /* 显示选择器 */
@@ -26,15 +29,29 @@ Page({
   /* 确认选择 */
   confirm(e) {
     const delta = e.detail.index[0];
-    const showDate = formatTime(delta) + ' ' + e.detail.value.join('');
-    this.setData({ showDate });
+    const dateObj = formatTime(delta);
+    const showDate = dateObj.date + ' ' + e.detail.value.join('');
+    const chooseDate = dateObj.timestamp;
+    this.setData({ showDate, chooseDate });
     this.hide();
   },
 
   /* 提交点歌信息 */
   submit(e) {
     const info = e.detail.value;
-    console.log(info);
+    info.openId = app.globalData.openId;
+    info.chooseDate = this.data.chooseDate;
+    info.submitDate = new Date().getTime();
+    wx.cloud.callFunction({ name: 'submitInfo', data: info }).then(({ result }) => {
+      wx.showToast({
+        icon: 'none',
+        title: result.msg,
+      });
+      if (result.type === 'success') {
+        /* 跳转处理页面 */
+        console.log(result.type);
+      }
+    });
   },
 
   /**

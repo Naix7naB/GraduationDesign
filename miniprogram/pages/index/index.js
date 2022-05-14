@@ -20,7 +20,7 @@ Page({
     if (url) {
       this.setData({ picUrl: url });
     } else {
-      getFilePath().then(({ url }) => {
+      getFilePath('SpongeBob').then(({ url }) => {
         this.setData({ picUrl: url });
         storage.setLocal('_defaultPic_', url);
       });
