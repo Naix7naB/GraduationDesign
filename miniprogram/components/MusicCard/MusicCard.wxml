@@ -1,0 +1,16 @@
+<view class="category custom-class">
+  <view class="title">{{title}}</view>
+  <swiper class="swiper" next-margin="160rpx">
+    <swiper-item class="swiper-item" wx:for="{{3}}" wx:key="index">
+      <view class="item" wx:for="{{3}}" wx:key="index">
+        <view class="img">
+          <!-- <image src="{{url}}" mode="aspectFit" /> -->
+        </view>
+        <view class="detail">
+          <text class="song">歌曲名</text>
+          <text class="singer">歌手名</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

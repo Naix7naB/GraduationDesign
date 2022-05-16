@@ -31,27 +31,34 @@ Page({
     const delta = e.detail.index[0];
     const dateObj = formatTime(delta);
     const showDate = dateObj.date + ' ' + e.detail.value.join('');
-    const chooseDate = dateObj.timestamp;
-    this.setData({ showDate, chooseDate });
+    this.data.chooseDate = dateObj.timestamp;
+    this.setData({ showDate });
     this.hide();
   },
 
   /* 提交点歌信息 */
   submit(e) {
     const info = e.detail.value;
-    info.openId = app.globalData.openId;
-    info.chooseDate = this.data.chooseDate;
-    info.submitDate = new Date().getTime();
-    wx.cloud.callFunction({ name: 'submitInfo', data: info }).then(({ result }) => {
+    if (!info.song || !info.singer || !info.ordering || !info.schedule) {
       wx.showToast({
         icon: 'none',
-        title: result.msg,
+        title: '信息不完整,请重新填写',
       });
-      if (result.type === 'success') {
-        /* 跳转处理页面 */
-        console.log(result.type);
-      }
-    });
+    } else {
+      info.openId = app.globalData.openId;
+      info.chooseDate = this.data.chooseDate;
+      info.submitDate = new Date().getTime();
+      wx.cloud.callFunction({ name: 'submitInfo', data: info }).then(({ result }) => {
+        wx.showToast({
+          icon: 'none',
+          title: result.msg,
+        });
+        if (result.type === 'success') {
+          /* 跳转处理页面 */
+          console.log(result.type);
+        }
+      });
+    }
   },
 
   /**

@@ -1,6 +1,15 @@
 <view class="search-bar">
   <view class="input-wrapper">
-    <i class="search BXicon-search"></i>
-    <input class="input" type="text" placeholder-class="placeholder" placeholder="{{placeholder}}" disabled="{{disabled}}" bindinput="input" />
+    <i class="search BXicon-search" />
+    <input
+      class="input"
+      type="text"
+      placeholder-class="placeholder"
+      placeholder="{{placeholder}}"
+      value="{{value}}"
+      disabled="{{disabled}}"
+      bindinput="input"
+    />
+    <i wx:if="{{value.length}}" class="close BXicon-close" bindtap="claer" />
   </view>
 </view>

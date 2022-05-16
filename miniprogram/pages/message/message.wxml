@@ -1,0 +1,20 @@
+<view class="home">
+  <view class="title"><text class="txt">消息列表</text></view>
+  <view class="message">
+    <scroll-view wx:if="{{true}}" scroll-y class="content">
+      <!-- 消息通知 -->
+      <view class="slide-wrapper" wx:for="{{4}}" wx:key="indxe">
+        <mp-slideview buttons="{{[{type:'warn',text: '删除'}]}}">
+          <view class="item">
+            <view class="icon">系统</view>
+            <text class="name">通知标题</text>
+            <text class="time">2020-05-15 15:03:23</text>
+            <text class="main">您好，您的点歌 孤勇者 已审核通过。留言：我的留言内容。您好，您的点歌 孤勇者 已审核通过。留言：我的留言内容。</text>
+          </view>
+        </mp-slideview>
+      </view>
+    </scroll-view>
+    <!-- 暂无消息 -->
+    <van-empty wx:else class="empty" description="暂无消息" />
+  </view>
+</view>

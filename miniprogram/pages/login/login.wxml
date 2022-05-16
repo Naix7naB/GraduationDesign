@@ -1,0 +1,64 @@
+<view class="container" style="{{bgStyle}}" wx:if="{{bgStyle}}">
+  <NavBar title="登录/注册" navBgColor="rgba(0,0,0,0)" showIcon />
+  <view class="content">
+    <form class="phoneCells" bindsubmit="login">
+      <van-field
+        center
+        clearable
+        type="number"
+        size="large"
+        maxlength="{{11}}"
+        label="手机号"
+        placeholder="输入手机号"
+        label-class="field-label"
+        input-class="field-input"
+        custom-style="{{fieldStyle}}"
+        placeholder-style="color:var(--grey)"
+        value='{{phone}}'
+        data-name="phone"
+        bind:input="onInput"
+        bind:clear="clear"
+      ></van-field>
+      <van-field
+        center
+        clearable
+        type="number"
+        size="large"
+        maxlength="{{6}}"
+        label="短信验证码"
+        placeholder="输入验证码"
+        label-class="field-label"
+        input-class="field-input"
+        custom-style="{{fieldStyle}}"
+        placeholder-style="color:var(--grey)"
+        value='{{captcha}}'
+        data-name="captcha"
+        bind:input="onInput"
+        bind:clear="clear"
+      >
+        <van-button
+          round
+          plain
+          slot="button"
+          size="small"
+          type="primary"
+          custom-style="color:var(--cyanLight);background:rgba(0,0,0,0);border:none;"
+          disabled="{{!isLegal}}"
+          bind:click="send"
+        >
+          {{captchaText}}
+        </van-button>
+      </van-field>
+      <van-button
+        block
+        round
+        size="large"
+        type="primary"
+        form-type="submit"
+        custom-style="{{buttonStyle}}"
+      >
+        登录
+      </van-button>
+    </form>
+  </view>
+</view>

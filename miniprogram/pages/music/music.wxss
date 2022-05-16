@@ -1,0 +1,10 @@
+.home .main {
+  width: 100%;
+  height: calc(100vh - 120rpx);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.home .main .music-card {
+  margin-bottom: 40rpx;
+}

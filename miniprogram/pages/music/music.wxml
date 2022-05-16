@@ -1,0 +1,6 @@
+<view class="home">
+  <SearchBar placeholder="搜索歌曲" disabled bindtap="toSearch" />
+  <scroll-view scroll-y class="main">
+    <MusicCard custom-class="music-card" wx:for="{{playlistArr}}" wx:key="item" list="{{item}}" />
+  </scroll-view>
+</view>

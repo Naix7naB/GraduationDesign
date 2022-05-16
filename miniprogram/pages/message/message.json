@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "van-empty": "/components/vant/empty/index",
+    "mp-slideview": "weui-miniprogram/slideview/slideview"
+  }
+}

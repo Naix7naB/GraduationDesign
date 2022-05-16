@@ -17,5 +17,4 @@
       <swiper-item class="item">公告内容3</swiper-item>
     </swiper>
   </view>
-  <view class="test">滚动区</view>
 </view>

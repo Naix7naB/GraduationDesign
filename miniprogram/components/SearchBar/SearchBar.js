@@ -18,12 +18,20 @@ Component({
   },
 
   /* 组件的初始数据 */
-  data: {},
+  data: {
+    value: '',
+  },
 
   /* 组件的方法列表 */
   methods: {
+    /* 输入内容 */
     input(e) {
-      this.triggerEvent('search', { value: e.detail.value });
+      this.setData({ value: e.detail.value });
+      this.triggerEvent('onInput', { value: e.detail.value });
+    },
+    /* 清空输入内容 */
+    claer() {
+      this.setData({ value: '' });
     },
   },
 });

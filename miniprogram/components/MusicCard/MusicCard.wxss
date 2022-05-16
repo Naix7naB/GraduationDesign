@@ -1,0 +1,52 @@
+.category {
+  width: 100%;
+  height: 40%;
+  background: rgba(149, 165, 214, 0.1);
+  box-shadow: 0 0 20rpx var(--greyShadow);
+}
+
+.category .title {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 40rpx;
+  font-size: var(--fontSizeMediumX);
+}
+
+.category .swiper {
+  height: calc(100% - 60rpx);
+}
+
+.category .swiper .swiper-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 60rpx;
+}
+
+.category .swiper .swiper-item .item {
+  display: flex;
+  width: 100%;
+}
+
+.category .swiper .swiper-item .item .detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 48rpx;
+  padding-left: 24rpx;
+}
+
+.category .swiper .swiper-item .item .detail .song {
+  font-size: var(--fontSizeMediumX);
+}
+
+.category .swiper .swiper-item .item .detail .singer {
+  font-size: var(--fontSizeSmall);
+}
+
+.category .swiper .swiper-item .item .img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: var(--radiusSmall);
+  overflow: hidden;
+}

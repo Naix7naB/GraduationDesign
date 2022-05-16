@@ -16,6 +16,7 @@ Page({
 
   /* 点击登录授权 */
   login() {
+    return;
     wx.getUserProfile({
       desc: '获取用户信息',
       success: async ({ userInfo }) => {

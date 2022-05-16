@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "点歌",
+  "usingComponents": {
+    "SearchBar": "/components/SearchBar/SearchBar",
+    "MusicCard": "/components/MusicCard/MusicCard"
+  }
+}
