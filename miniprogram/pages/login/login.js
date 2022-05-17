@@ -1,7 +1,9 @@
-import { sendCaptcha } from '../../service/login';
+import { sendCaptcha, verifyCaptcha, loginByCellphone } from '../../service/login';
 import { getFilePath } from '../../utils/index';
+import storage from '../../utils/storage';
 
 const phoneReg = /^1[3-9]\d{9}$/;
+let timer = null;
 
 Page({
   /* 页面的初始数据*/
@@ -13,26 +15,30 @@ Page({
     captcha: '',
     captchaText: '获取验证码',
     isLegal: false,
+    locked: false,
   },
 
   /* 输入内容 */
   onInput(e) {
     const key = e.currentTarget.dataset.name;
     const inputVal = e.detail;
-    let isLegal = false;
-    if (key === 'phone' && inputVal.length === 11) {
+    this.setData({ [key]: inputVal });
+    if (key === 'phone') {
       /* 检验输入的手机号是否合法 */
-      if (!inputVal.match(phoneReg)) {
-        isLegal = false;
-        wx.showToast({
-          icon: 'error',
-          title: '手机号错误',
-        });
-      } else {
+      let isLegal = false;
+      if (inputVal.match(phoneReg)) {
         isLegal = true;
+      } else {
+        isLegal = false;
+        if (inputVal.length === 11) {
+          wx.showToast({
+            icon: 'error',
+            title: '手机号格式错误',
+          });
+        }
       }
+      this.setData({ isLegal });
     }
-    this.setData({ [key]: inputVal, isLegal });
   },
 
   /* 清空输入框 */
@@ -45,14 +51,65 @@ Page({
     }
   },
 
-  /* 发送验证码 */
+  /* 获取验证码 */
   send() {
-    console.log(this.data.phone);
+    /* 节流阀 */
+    if (this.data.locked) {
+      wx.showToast({
+        icon: 'none',
+        title: this.data.captchaText,
+      });
+      return;
+    }
+    this.data.locked = true;
+
+    let sec = 60,
+      txt = '';
+    this.setData({ captchaText: `${sec}s后重试` });
+    timer = setInterval(() => {
+      if (--sec === 0) {
+        clearInterval(timer);
+        txt = '获取验证码';
+        this.data.locked = false;
+      } else {
+        txt = `${sec}s后重试`;
+      }
+      this.setData({ captchaText: txt });
+    }, 1000);
+    sendCaptcha(this.data.phone);
   },
 
   /* 登录 */
   login() {
-    console.log('login');
+    const { phone, captcha, isLegal } = this.data;
+    if (!isLegal || !captcha) {
+      /* 手机号不合法或者验证码为空 则不能点击登录按钮 */
+      const title = !isLegal ? '手机号格式错误' : '验证码为空';
+      wx.showToast({ icon: 'error', title });
+    } else {
+      /* 验证验证码 */
+      verifyCaptcha(phone, captcha).then(async (res) => {
+        if (res.code !== 200) {
+          /* 验证码错误 */
+          wx.showToast({
+            icon: 'error',
+            title: res.message,
+          });
+        } else {
+          /* 验证码正确 */
+          try {
+            const { token } = await loginByCellphone(phone, captcha);
+            storage.setLocal('_token_', token);
+            /* 登录成功 */
+            wx.reLaunch({
+              url: '/pages/user/user',
+            });
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      });
+    }
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -87,10 +144,10 @@ Page({
    */
   onHide() {},
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {},
+  /* 生命周期函数--监听页面卸载 */
+  onUnload() {
+    timer = null;
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -2,7 +2,7 @@ import { request } from './base';
 
 /* 手机登录 */
 export function loginByCellphone(phone, captcha) {
-  return request('/login/cellphone', {
+  return request('post', '/login/cellphone', {
     phone,
     captcha,
   });
@@ -10,14 +10,14 @@ export function loginByCellphone(phone, captcha) {
 
 /* 发送验证码 */
 export function sendCaptcha(phone) {
-  return request('/captcha/sent', {
+  return request('post', '/captcha/sent', {
     phone,
   });
 }
 
 /* 验证验证码 */
 export function verifyCaptcha(phone, captcha) {
-  return request('/captcha/verify', {
+  return request('post', '/captcha/verify', {
     phone,
     captcha,
   });
