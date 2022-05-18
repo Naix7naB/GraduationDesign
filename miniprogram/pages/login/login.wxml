@@ -1,4 +1,4 @@
-<view class="container" style="{{bgStyle}}" wx:if="{{bgStyle}}">
+<view wx:if="{{bgStyle}}" class="container" style="{{bgStyle}}">
   <NavBar title="登录/注册" navBgColor="rgba(0,0,0,0)" showIcon />
   <view class="content">
     <form class="phoneCells" bindsubmit="login">

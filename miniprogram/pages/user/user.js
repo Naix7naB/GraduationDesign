@@ -1,75 +1,48 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from '../../utils/store';
 
-const app = getApp();
-
 Page({
   /* 页面的初始数据 */
-  data: {
-    openId: app.globalData.openId,
-  },
+  data: {},
 
   /* 展示弹窗 */
-  show() {
-    this.selectComponent('#dialog').show();
-  },
-
-  /* 点击登录授权 */
-  login() {
-    return;
-    wx.getUserProfile({
-      desc: '获取用户信息',
-      success: async ({ userInfo }) => {
-        /* 授权成功 */
-        const { result } = await wx.cloud.callFunction({
-          name: 'login',
-          data: {
-            ...userInfo,
-            openid: this.data.openId,
-          },
-        });
-        wx.showToast({
-          title: result.message,
-          icon: 'none',
-        });
-        this.setLoginState(true);
-        this.setUserInfo(result.data);
-      },
-      fail: ({ errMsg }) => {
-        /* 授权失败 */
-        wx.showToast({
-          title: '您已拒绝登录',
-          icon: 'none',
-        });
-        this.setLoginState(false);
-        console.error(errMsg);
-      },
-      complete: () => {
-        this.selectComponent('#dialog').hide();
-      },
-    });
-  },
-
-  onclick() {
-    // wx.cloud.callFunction({ name: 'getProvince' }).then(({ result }) => {
-    //   console.log(result.provinceList);
-    // });
-    wx.cloud
-      .callFunction({
-        name: 'getSchool',
-        data: { province: '福建省' },
-      })
-      .then(({ result }) => {
-        console.log(result.schools);
+  show(e) {
+    const { name } = e.detail;
+    if (name === 'login') {
+      /* 跳转登录页面 */
+      wx.navigateTo({
+        url: `/pages/login/login`,
       });
+    } else {
+      /* 跳转个人信息页面 */
+      wx.navigateTo({
+        url: '/pages/user/detail/detail?name=personal',
+      });
+    }
+  },
+
+  /* 点击跳转详细页面 */
+  onclick(e) {
+    wx.showLoading({
+      title: '加载中...',
+    });
+    let targetUrl = '';
+    if (!this.data.isLogin) {
+      /* 未登录状态 跳转登录页面 */
+      targetUrl = '/pages/login/login';
+    } else {
+      /* 登录状态 正常跳转 */
+      const { name } = e.target.dataset;
+      targetUrl = `/pages/user/detail/detail?name=${name}`;
+    }
+    wx.navigateTo({ url: targetUrl });
   },
 
   /* 生命周期函数--监听页面加载 */
-  onLoad: function (options) {
+  onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ['isLogin', 'userInfo'],
-      actions: ['setLoginState', 'setUserInfo'],
     });
   },
 

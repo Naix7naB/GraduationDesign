@@ -1,3 +1,8 @@
+.container {
+  background-size: contain;
+  background-position: center;
+}
+
 .phoneCells {
   position: absolute;
   top: 20%;

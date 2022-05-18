@@ -1,10 +1,10 @@
-<view class="unentered" wx:if="{{!isLogin}}" bindtap="onTap">
+<view wx:if="{{!isLogin}}" class="unentered" bindtap="onTap" data-name="login">
   <text class="title">未登录／注册</text>
   <text class="desc">点击头像可登录/注册</text>
 </view>
 
-<view class="user-info" wx:else>
-  <view class="avatar">
+<view wx:else class="user-info">
+  <view class="avatar" catchtap="onTap" data-name="avatar">
     <image src="{{userInfo.avatarUrl}}" mode="aspectFit" />
   </view>
   <view class="detail">

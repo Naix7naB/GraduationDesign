@@ -16,8 +16,9 @@ Component({
 
   /* 组件的方法列表 */
   methods: {
-    onTap() {
-      this.triggerEvent('tapEvent');
+    onTap(e) {
+      const { name } = e.currentTarget.dataset;
+      this.triggerEvent('tapEvent', { name });
     },
   },
 });

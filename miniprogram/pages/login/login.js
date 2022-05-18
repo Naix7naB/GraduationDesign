@@ -1,13 +1,17 @@
+import { createStoreBindings } from 'mobx-miniprogram-bindings';
+import { store } from '../../utils/store';
 import { sendCaptcha, verifyCaptcha, loginByCellphone } from '../../service/login';
 import { getFilePath } from '../../utils/index';
 import storage from '../../utils/storage';
 
+const app = getApp();
 const phoneReg = /^1[3-9]\d{9}$/;
 let timer = null;
 
 Page({
   /* 页面的初始数据*/
   data: {
+    openId: app.globalData.openId,
     bgStyle: '',
     fieldStyle: 'background:rgba(0,0,0,0);',
     buttonStyle: 'width:70%;height:80rpx;margin:40rpx auto;',
@@ -98,11 +102,40 @@ Page({
         } else {
           /* 验证码正确 */
           try {
-            const { token } = await loginByCellphone(phone, captcha);
-            storage.setLocal('_token_', token);
-            /* 登录成功 */
-            wx.reLaunch({
-              url: '/pages/user/user',
+            /* 用户微信授权 */
+            wx.getUserProfile({
+              desc: '获取用户信息',
+              success: async ({ userInfo }) => {
+                /* 授权成功 */
+                const { result } = await wx.cloud.callFunction({
+                  name: 'login',
+                  data: {
+                    ...userInfo,
+                    openid: this.data.openId,
+                  },
+                });
+                wx.showToast({
+                  icon: 'none',
+                  title: result.message,
+                });
+                const { token } = await loginByCellphone(phone, captcha);
+                storage.setLocal('_token_', token);
+                this.setLoginState(true);
+                this.setUserInfo(result.data);
+                /* 跳转个人主页 */
+                wx.reLaunch({
+                  url: '/pages/user/user',
+                });
+              },
+              fail: ({ errMsg }) => {
+                /* 授权失败 */
+                wx.showToast({
+                  title: '您已拒绝登录',
+                  icon: 'none',
+                });
+                this.setLoginState(false);
+                console.error(errMsg);
+              },
             });
           } catch (err) {
             console.error(err);
@@ -114,53 +147,31 @@ Page({
 
   /* 生命周期函数--监听页面加载 */
   onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ['isLogin', 'userInfo'],
+      actions: ['setLoginState', 'setUserInfo'],
+    });
     wx.showLoading({
       title: '加载中...',
     });
-    getFilePath('paper_2').then(({ url }) => {
-      this.setData({
-        bgStyle: `
-        background-image:url(${url});
-        background-size:contain;
-        background-position:center;
-      `,
+    getFilePath('paper_2')
+      .then(({ url }) => {
+        this.setData({ bgStyle: `background-image:url(${url});` });
+        wx.hideLoading();
+      })
+      .catch((err) => {
+        console.error(err);
+        wx.hideLoading();
+        wx.reLaunch({
+          url: '/pages/user/user',
+        });
       });
-      wx.hideLoading();
-    });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {},
 
   /* 生命周期函数--监听页面卸载 */
   onUnload() {
     timer = null;
+    this.storeBindings.destroyStoreBindings();
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {},
 });

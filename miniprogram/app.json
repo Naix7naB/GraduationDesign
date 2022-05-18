@@ -3,8 +3,9 @@
     "pages/index/index",
     "pages/music/music",
     "pages/message/message",
-    "pages/user/user",
     "pages/login/login",
+    "pages/user/user",
+    "pages/user/detail/detail",
     "pages/order/order",
     "pages/search/search"
   ],

@@ -1,19 +1,18 @@
 <scroll-view class="home" scroll-y refresher-enabled>
-  <!-- 登录弹窗 -->
-  <Dialog id="dialog" bind:login="login" />
   <!-- 用户信息 -->
-  <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="show"></UserInfo>
-  <van-cell-group custom-class="group">
-    <van-cell title="个人中心" is-link clickable />
-    <van-cell title="积分商城" is-link clickable />
-    <van-cell title="点歌券" is-link clickable />
+  <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="show" />
+  <!-- 个人中心功能列表 -->
+  <van-cell-group custom-class="group" bindtap="onclick">
+    <van-cell is-link title="个人中心" data-name="personal" />
+    <van-cell is-link title="积分商城" data-name="point" />
+    <van-cell is-link title="点歌券" data-name="ticket" />
   </van-cell-group>
-  <van-cell-group custom-class="group">
-    <van-cell title="选择学校" label="学校名称" is-link clickable />
+  <van-cell-group custom-class="group" bindtap="onclick">
+    <van-cell is-link title="选择学校" label="学校名称" data-name="school" />
   </van-cell-group>
-  <van-cell-group custom-class="group">
-    <van-cell title="反馈与帮助" is-link clickable />
-    <van-cell title="关于" is-link clickable />
-    <van-cell title="设置" is-link clickable />
+  <van-cell-group custom-class="group" bindtap="onclick">
+    <van-cell is-link title="反馈与帮助" data-name="help" />
+    <van-cell is-link title="关于" data-name="about" />
+    <van-cell is-link title="设置" data-name="setting" />
   </van-cell-group>
 </scroll-view>
