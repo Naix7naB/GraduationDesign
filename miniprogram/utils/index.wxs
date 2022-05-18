@@ -1,0 +1,11 @@
+/* 处理作者项 */
+function handleAuthor(item) {
+  var arList = item.ar.map(function (item) {
+    return item.name;
+  });
+  return arList.join('/');
+}
+
+module.exports = {
+  handleAuthor: handleAuthor,
+};

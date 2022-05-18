@@ -1,14 +1,15 @@
+<wxs src="../../utils/index.wxs" module="music" />
 <view class="category custom-class">
   <view class="title">{{title}}</view>
-  <swiper class="swiper" next-margin="160rpx">
-    <swiper-item class="swiper-item" wx:for="{{3}}" wx:key="index">
-      <view class="item" wx:for="{{3}}" wx:key="index">
+  <swiper class="swiper" next-margin="160rpx" bindtap="onTap">
+    <swiper-item class="swiper-item" wx:for="{{musicList}}" wx:for-item="_list_" wx:key="index" mark:item="{{index}}">
+      <view class="item" wx:for="{{_list_}}" wx:for-item="item" wx:key="id" mark:song="{{index}}">
         <view class="img">
-          <!-- <image src="{{url}}" mode="aspectFit" /> -->
+          <image src="{{item.al.picUrl}}" mode="aspectFit" />
         </view>
         <view class="detail">
-          <text class="song">歌曲名</text>
-          <text class="singer">歌手名</text>
+          <text class="song">{{item.name}}</text>
+          <text class="singer">{{music.handleAuthor(item)}}</text>
         </view>
       </view>
     </swiper-item>

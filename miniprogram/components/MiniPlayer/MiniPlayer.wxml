@@ -1,0 +1,16 @@
+<view class="mini-player-wrapper" hidden="{{!visible}}">
+  <view class="mini-player">
+    <view class="mini-player-l">
+      <view class="img">
+        <image src="{{musicInfo.picUrl}}" mode="aspectFit" />
+      </view>
+      <view class="detail">
+        <text>{{musicInfo.name}}</text>
+        <text>{{musicInfo.author}}</text>
+      </view>
+    </view>
+    <view class="mini-play-r">
+      <view>controlor</view>
+    </view>
+  </view>
+</view>

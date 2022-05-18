@@ -1,3 +1,15 @@
+.home {
+  background: var(--white);
+}
+
+.home .cus-search-bar {
+  background: rgba(81, 120, 555, 0.1);
+}
+
+.home .cus-input {
+  background: var(--white) !important;
+}
+
 .home .main {
   width: 100%;
   height: calc(100vh - 120rpx);
@@ -6,5 +18,9 @@
 }
 
 .home .main .music-card {
-  margin-bottom: 40rpx;
+  margin-bottom: 70rpx;
+}
+
+.home .main .music-card:last-child {
+  margin: 0;
 }

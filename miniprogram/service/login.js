@@ -2,25 +2,37 @@ import { request } from './base';
 
 /* 手机登录 */
 export function loginByCellphone(phone, captcha) {
-  return request('post', '/login/cellphone', {
-    phone,
-    captcha,
-  });
+  return request(
+    '/login/cellphone',
+    {
+      phone,
+      captcha,
+    },
+    'post'
+  );
 }
 
 /* 发送验证码 */
 export function sendCaptcha(phone) {
-  return request('post', '/captcha/sent', {
-    phone,
-  });
+  return request(
+    '/captcha/sent',
+    {
+      phone,
+    },
+    'post'
+  );
 }
 
 /* 验证验证码 */
 export function verifyCaptcha(phone, captcha) {
-  return request('post', '/captcha/verify', {
-    phone,
-    captcha,
-  });
+  return request(
+    '/captcha/verify',
+    {
+      phone,
+      captcha,
+    },
+    'post'
+  );
 }
 
 /* 查看登录状态 */

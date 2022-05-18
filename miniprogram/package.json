@@ -12,6 +12,7 @@
   "dependencies": {
     "@vant/weapp": "^1.10.2",
     "mobx-miniprogram": "^4.13.2",
-    "mobx-miniprogram-bindings": "^2.1.5"
+    "mobx-miniprogram-bindings": "^2.1.5",
+    "weapp-cookie": "^1.4.8"
   }
 }

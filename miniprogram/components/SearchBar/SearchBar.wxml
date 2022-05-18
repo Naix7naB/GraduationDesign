@@ -1,12 +1,12 @@
-<view class="search-bar">
-  <view class="input-wrapper">
+<view class="search-bar search-class">
+  <view class="input-wrapper input-class">
     <i class="search BXicon-search" />
     <input
       class="input"
       type="text"
+      value="{{value}}"
       placeholder-class="placeholder"
       placeholder="{{placeholder}}"
-      value="{{value}}"
       disabled="{{disabled}}"
       bindinput="input"
     />

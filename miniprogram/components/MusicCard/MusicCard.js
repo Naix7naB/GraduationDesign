@@ -1,5 +1,3 @@
-import { getFilePath } from '../../utils/index';
-
 Component({
   /* 组件的选项配置 */
   options: {
@@ -16,7 +14,7 @@ Component({
       value: null,
       observer(newVal) {
         let title = '';
-        switch (newVal.name) {
+        switch (newVal.title) {
           case '飙升榜':
             title = '飙升歌曲';
             break;
@@ -33,18 +31,18 @@ Component({
             title = '悠韵古风';
             break;
         }
-        const { tracks, trackIds } = newVal;
+        const { songs } = newVal;
         const _list_ = [];
-        const arr = tracks.slice(0, 12);
-        console.log(arr.length);
-        // for (let i = 0; i < arr.length; i + 3) {
-        // console.log(i);
-        // _list_.push(arr.slice(0, 3));
-        // }
-        // this.setData({
-        //   title,
-        //   musicIds: trackIds.slice(0, 12),
-        // });
+        for (let i = 0; i < 4; i++) {
+          let start = 3 * i,
+            step = 3 * (i + 1);
+          if (songs.slice(start, step).length < 3) break;
+          _list_.push(songs.slice(start, step));
+        }
+        this.setData({
+          title,
+          musicList: _list_,
+        });
       },
     },
   },
@@ -53,9 +51,16 @@ Component({
   data: {
     title: '',
     musicList: [],
-    musicIds: [],
   },
 
   /* 组件的方法列表 */
-  methods: {},
+  methods: {
+    /* 点击歌曲 */
+    onTap(e) {
+      const { item, song } = e.mark;
+      this.triggerEvent('selectItem', {
+        item: this.data.musicList[item][song],
+      });
+    },
+  },
 });

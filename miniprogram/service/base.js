@@ -1,7 +1,7 @@
 import envList from '../envList';
 const { baseUrl } = envList.dev;
 
-export function request(method = 'GET', url, data = {}) {
+export function request(url, data = {}, method = 'GET') {
   return new Promise((resolve, reject) => {
     /* 请求时显示加载 */
     wx.showLoading({
@@ -11,9 +11,9 @@ export function request(method = 'GET', url, data = {}) {
 
     const _url = baseUrl + url;
     wx.request({
-      method: method,
       url: _url,
       data: data,
+      method: method,
       timeout: 5000,
       success: ({ data }) => {
         resolve(data);

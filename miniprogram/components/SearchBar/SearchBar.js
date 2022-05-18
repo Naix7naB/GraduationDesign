@@ -5,6 +5,9 @@ Component({
     virtualHost: true,
   },
 
+  /* 外部样式 */
+  externalClasses: ['search-class', 'input-class'],
+
   /* 组件的属性列表 */
   properties: {
     placeholder: {

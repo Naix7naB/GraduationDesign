@@ -27,3 +27,8 @@ export async function getAllPlaylist() {
 export function getDailyRecommend() {
   return request('/playlist/catlist');
 }
+
+/* 获取歌曲url */
+export function getMusicUrl(song) {
+  return request('/song/url', { id: song.id });
+}

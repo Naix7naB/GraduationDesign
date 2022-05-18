@@ -1,4 +1,7 @@
-import { getAllPlaylist } from '../../service/toplist';
+import { createStoreBindings } from 'mobx-miniprogram-bindings';
+import { store } from '../../utils/store';
+import { getAllPlaylist, getMusicUrl } from '../../service/toplist';
+import { handleAuthor } from '../../utils/index';
 
 Page({
   /* 页面的初始数据 */
@@ -13,30 +16,54 @@ Page({
     });
   },
 
+  /* 点击歌曲 */
+  selectItem(e) {
+    const miniPlayer = this.selectComponent('#miniPlayer');
+    const { item } = e.detail;
+    const info = {
+      name: item.name,
+      author: handleAuthor(item),
+      picUrl: item.al.picUrl,
+    };
+    miniPlayer.show();
+    this.setMusicInfo(info);
+    this.setScrollStyle('height: calc(100vh - 260rpx);');
+    getMusicUrl(item).then(({ data }) => {
+      this.audio.name = info.name;
+      this.audio.author = info.author;
+      this.audio.src = data[0].url;
+      this.audio.play();
+    });
+  },
+
   /* 生命周期函数--监听页面加载 */
   onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ['musicInfo', 'scrollStyle'],
+      actions: ['setMusicInfo', 'setScrollStyle'],
+    });
     getAllPlaylist().then((res) => {
-      this.setData({ playlistArr: res });
+      const list = res.map((item) => {
+        return {
+          id: item.id,
+          title: item.name,
+          songs: item.tracks.slice(0, 30),
+        };
+      });
+      this.setData({ playlistArr: list });
     });
   },
 
   /* 生命周期函数--监听页面初次渲染完成 */
-  onReady() {},
+  onReady() {
+    this.audio = wx.createInnerAudioContext();
+  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {},
+  /* 生命周期函数--监听页面卸载 */
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

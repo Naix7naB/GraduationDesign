@@ -1,5 +1,6 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from './utils/store';
+import './miniprogram_npm/weapp-cookie/index';
 import storage from './utils/storage';
 
 App({
