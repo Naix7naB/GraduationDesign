@@ -9,7 +9,7 @@ function getToplist() {
 
 /* 获取歌单详细 */
 async function getPlaylistDetail(item) {
-  const { playlist } = await request('/playlist/detail', { id: item.id });
+  const { playlist } = await request('/playlist/detail', { data: { id: item.id } });
   return playlist;
 }
 
@@ -29,6 +29,6 @@ export function getDailyRecommend() {
 }
 
 /* 获取歌曲url */
-export function getMusicUrl(song) {
-  return request('/song/url', { id: song.id });
+export function getMusicUrl(item) {
+  return request('/song/url', { data: { id: item.id } });
 }

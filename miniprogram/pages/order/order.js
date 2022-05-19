@@ -12,6 +12,8 @@ Page({
   data: {
     visible: false,
     columns: [],
+    name: '',
+    author: '',
     showDate: '',
     chooseDate: null,
   },
@@ -70,6 +72,12 @@ Page({
     const time = schedule.time;
     days.push(...days.splice(0, idx));
     this.setData({ columns: [{ values: days }, { values: time }] });
+    if (options.name && options.author) {
+      this.setData({
+        name: options.name,
+        author: options.author,
+      });
+    }
   },
 
   /**

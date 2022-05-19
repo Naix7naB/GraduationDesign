@@ -17,5 +17,6 @@
       bind:selectItem="selectItem"
     />
   </scroll-view>
-  <MiniPlayer id="miniPlayer" />
+  <!-- Mini播放器 -->
+  <MiniPlayer bind:setState="play" bind:setOrder="add" />
 </view>

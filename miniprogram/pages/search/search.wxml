@@ -1,2 +1,39 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="container">
+  <NavBar showIcon title="搜索歌曲" titleColor="#000" navBgColor="#fff" />
+  <SearchBar placeholder="{{defaultKeyword}}" searchWord="{{showKeyword}}" bind:onInput="search" />
+  <view class="content">
+    <scroll-view class="scroll-part" scroll-y>
+      <!-- 搜索历史 -->
+      <view class="history common">
+        <!-- 标题 -->
+        <view class="title">搜索历史
+          <mp-icon icon="delete" size="24" bindtap="clear" />
+        </view>
+        <!-- 搜索历史标签 -->
+        <view class="tabs">
+          <view class="tab">周杰伦</view>
+        </view>
+      </view>
+      <!-- 热门搜索 -->
+      <view class="hot common">
+        <!-- 标题 -->
+        <view class="title">热门搜索</view>
+        <!-- 热门搜索列表 -->
+        <view class="list">
+          <view class="item" wx:for="{{hotList}}" wx:key="index" data-idx="{{index}}" bindtap="onTap">
+            <view class="num">{{index+1}}</view>
+            <view class="detail">
+              <view class="name">{{item.searchWord}}</view>
+              <view class="desc" wx:if="{{item.content}}">{{item.content}}</view>
+            </view>
+            <view class="count">{{item.score}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="result">
+    
+  </view>
+  </view>
+
+</view>

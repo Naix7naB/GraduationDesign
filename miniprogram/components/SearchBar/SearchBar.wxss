@@ -31,5 +31,5 @@
 
 .search-bar .input-wrapper .search,
 .search-bar .input-wrapper .placeholder {
-  color: var(--blackShadow);
+  color: var(--gray);
 }

@@ -23,9 +23,6 @@ Page({
 
   /* 点击跳转详细页面 */
   onclick(e) {
-    wx.showLoading({
-      title: '加载中...',
-    });
     let targetUrl = '';
     if (!this.data.isLogin) {
       /* 未登录状态 跳转登录页面 */

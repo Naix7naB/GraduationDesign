@@ -13,23 +13,38 @@ Component({
   properties: {},
 
   /* 组件的初始数据 */
-  data: {
-    visible: false,
-  },
+  data: {},
 
   /* store */
   storeBindings: {
     store,
-    fields: ['musicInfo'],
+    fields: ['musicInfo', 'playState', 'showPlayer', 'playIcon'],
+    actions: ['setPlayState', 'setShowPlayer'],
+  },
+
+  observers: {
+    playState(state) {
+      this.triggerEvent('setState', { state });
+    },
   },
 
   /* 组件的方法列表 */
   methods: {
+    /* 显示播放器 */
     show() {
-      this.setData({ visible: true });
+      this.setShowPlayer(true);
     },
+    /* 隐藏播放器 */
     hide() {
-      this.setData({ visible: false });
+      this.setShowPlayer(false);
+    },
+    /* 播放歌曲 */
+    play() {
+      this.setPlayState(!this.data.playState);
+    },
+    /* 添加点歌 */
+    add() {
+      this.triggerEvent('setOrder');
     },
   },
 });

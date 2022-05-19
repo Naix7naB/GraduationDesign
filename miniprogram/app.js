@@ -1,7 +1,7 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from './utils/store';
-import './miniprogram_npm/weapp-cookie/index';
 import storage from './utils/storage';
+import './miniprogram_npm/weapp-cookie/index';
 
 App({
   /* 当小程序初始化完成时，会触发 onLaunch（全局只触发一次） */

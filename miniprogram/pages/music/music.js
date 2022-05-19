@@ -7,6 +7,7 @@ Page({
   /* 页面的初始数据 */
   data: {
     playlistArr: [],
+    song: null,
   },
 
   /* 跳转搜索页面 */
@@ -18,21 +19,44 @@ Page({
 
   /* 点击歌曲 */
   selectItem(e) {
-    const miniPlayer = this.selectComponent('#miniPlayer');
     const { item } = e.detail;
+    if (this.data.song === item) return;
     const info = {
       name: item.name,
       author: handleAuthor(item),
       picUrl: item.al.picUrl,
     };
-    miniPlayer.show();
-    this.setMusicInfo(info);
-    this.setScrollStyle('height: calc(100vh - 260rpx);');
     getMusicUrl(item).then(({ data }) => {
-      this.audio.name = info.name;
-      this.audio.author = info.author;
-      this.audio.src = data[0].url;
-      this.audio.play();
+      this.bgm.title = info.name;
+      this.bgm.singer = info.author;
+      this.bgm.src = data[0].url;
+      this.bgm.play();
+      this.setMusicInfo(info);
+      this.setData({ song: item });
+    });
+  },
+
+  /* 播放歌曲 */
+  play(e) {
+    if (e.detail.state) {
+      this.bgm.play();
+    } else {
+      this.bgm.pause();
+    }
+  },
+
+  /* 添加点歌 */
+  add() {
+    const song = this.data.song;
+    wx.showModal({
+      content: '是否添加点歌?',
+      success(res) {
+        if (res.cancel) return;
+        /* 跳转点歌页面 */
+        wx.navigateTo({
+          url: `/pages/order/order?name=${song.name}&author=${handleAuthor(song)}`,
+        });
+      },
     });
   },
 
@@ -40,8 +64,8 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['musicInfo', 'scrollStyle'],
-      actions: ['setMusicInfo', 'setScrollStyle'],
+      fields: ['musicInfo', 'playState', 'showPlayer', 'scrollStyle'],
+      actions: ['setMusicInfo', 'setPlayState', 'setShowPlayer'],
     });
     getAllPlaylist().then((res) => {
       const list = res.map((item) => {
@@ -57,7 +81,17 @@ Page({
 
   /* 生命周期函数--监听页面初次渲染完成 */
   onReady() {
-    this.audio = wx.createInnerAudioContext();
+    this.bgm = wx.getBackgroundAudioManager();
+    this.bgm.onPlay(() => {
+      this.setPlayState(true);
+      this.setShowPlayer(true);
+    });
+    this.bgm.onPause(() => {
+      this.setPlayState(false);
+    });
+    this.bgm.onEnded(() => {
+      this.setShowPlayer(false);
+    });
   },
 
   /* 生命周期函数--监听页面卸载 */

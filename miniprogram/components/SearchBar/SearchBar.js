@@ -10,6 +10,13 @@ Component({
 
   /* 组件的属性列表 */
   properties: {
+    searchWord: {
+      type: String,
+      value: '',
+      observer(word) {
+        this.input(word);
+      },
+    },
     placeholder: {
       type: String,
       value: '请输入内容',
@@ -28,9 +35,15 @@ Component({
   /* 组件的方法列表 */
   methods: {
     /* 输入内容 */
-    input(e) {
-      this.setData({ value: e.detail.value });
-      this.triggerEvent('onInput', { value: e.detail.value });
+    input(content) {
+      let _value = '';
+      if (typeof content === 'object') {
+        _value = content.detail.value;
+      } else {
+        _value = content;
+      }
+      this.setData({ value: _value });
+      this.triggerEvent('onInput', { value: _value });
     },
     /* 清空输入内容 */
     claer() {

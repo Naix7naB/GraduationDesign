@@ -8,8 +8,8 @@
   <view class="content">
     <!-- 表单 -->
     <form bindsubmit="submit">
-      <van-field label="歌曲" name="song" placeholder="请输入歌曲名" required />
-      <van-field label="歌手" name="singer" placeholder="请输入歌手名" required />
+      <van-field label="歌曲" name="song" value="{{name}}" placeholder="请输入歌曲名" required />
+      <van-field label="歌手" name="singer" value="{{author}}" placeholder="请输入歌手名" required />
       <van-field label="点歌人" name="ordering" placeholder="点歌的人的名字" required />
       <van-field label="点给谁" name="ordered" placeholder="被点歌人的名字" />
       <van-field label="留言" name="comment" type="textarea" placeholder="写下你点歌的故事吧" autosize />

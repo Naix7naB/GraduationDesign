@@ -1,16 +1,17 @@
-<view class="mini-player-wrapper" hidden="{{!visible}}">
+<view class="mini-player-wrapper" wx:if="{{showPlayer}}">
   <view class="mini-player">
     <view class="mini-player-l">
       <view class="img">
         <image src="{{musicInfo.picUrl}}" mode="aspectFit" />
       </view>
       <view class="detail">
-        <text>{{musicInfo.name}}</text>
-        <text>{{musicInfo.author}}</text>
+        <text class="name">{{musicInfo.name}}</text>
+        <text class="author">{{musicInfo.author}}</text>
       </view>
     </view>
-    <view class="mini-play-r">
-      <view>controlor</view>
+    <view class="mini-player-r">
+      <mp-icon icon="{{playIcon}}" type="field" size="36" color="white" bindtap="play" />
+      <mp-icon icon="add2" type="field" size="28" color="white" bindtap="add" />
     </view>
   </view>
 </view>

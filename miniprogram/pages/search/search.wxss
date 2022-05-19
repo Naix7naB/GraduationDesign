@@ -1,1 +1,92 @@
-/* pages/search/search.wxss */
+.scroll-part,
+.result {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.common {
+  padding: 40rpx;
+}
+
+.common .title {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 600;
+  font-size: var(--fontSizeLarge);
+}
+
+.history {
+  width: 100%;
+}
+
+.history .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  padding-right: 10rpx;
+}
+
+.history .tabs {
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+.history .tabs .tab {
+  display: inline-block;
+  padding: 10rpx 32rpx;
+  font-size: var(--fontSizeMedium);
+  border-radius: var(--radiusLarge);
+  background: var(--white);
+}
+
+.hot {
+  padding-bottom: 60rpx;
+}
+
+.hot .list .item {
+  display: flex;
+  height: 120rpx;
+  padding-top: 20rpx;
+  align-items: center;
+}
+
+.hot .list .item .num {
+  width: 80rpx;
+  padding-left: 20rpx;
+}
+
+.hot .list .item:nth-child(-n + 3) .num {
+  color: var(--red);
+}
+
+.hot .list .item .detail {
+  flex: 1;
+  line-height: 40rpx;
+  font-size: var(--fontSizeMediumX);
+  overflow: hidden;
+}
+
+.hot .list .item .detail .desc {
+  color: var(--gray);
+  font-size: var(--fontSizeSmall);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.hot .list .item .count {
+  width: 200rpx;
+  text-align: right;
+  font-size: var(--fontSizeSmall);
+  color: var(--gray);
+}
+
+.result {
+  z-index: 99;
+  background: var(--blueLight);
+}
