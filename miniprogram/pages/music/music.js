@@ -10,8 +10,23 @@ Page({
     song: null,
   },
 
+  /* 取消登录 */
+  cancel() {
+    this.dialog.hide();
+  },
+
+  /* 确认登录 */
+  confirm() {
+    this.dialog.show();
+    wx.navigateTo({
+      url: '/pages/login/login',
+    });
+  },
+
   /* 跳转搜索页面 */
   toSearch() {
+    /* 未登录状态 显示弹窗 */
+    if (!this.data.isLogin) return this.dialog.show();
     wx.navigateTo({
       url: '/pages/search/search',
     });
@@ -19,6 +34,8 @@ Page({
 
   /* 点击歌曲 */
   selectItem(e) {
+    /* 未登录状态 显示弹窗 */
+    if (!this.data.isLogin) return this.dialog.show();
     const { item } = e.detail;
     if (this.data.song === item) return;
     const info = {
@@ -64,7 +81,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['musicInfo', 'playState', 'showPlayer', 'scrollStyle'],
+      fields: ['musicInfo', 'playState', 'showPlayer', 'scrollStyle', 'isLogin'],
       actions: ['setMusicInfo', 'setPlayState', 'setShowPlayer'],
     });
     getAllPlaylist().then((res) => {
@@ -81,6 +98,7 @@ Page({
 
   /* 生命周期函数--监听页面初次渲染完成 */
   onReady() {
+    this.dialog = this.selectComponent('#dialog');
     this.bgm = wx.getBackgroundAudioManager();
     this.bgm.onPlay(() => {
       this.setPlayState(true);
@@ -99,18 +117,6 @@ Page({
     this.storeBindings.destroyStoreBindings();
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  /* 页面相关事件处理函数--监听用户下拉动作 */
   onPullDownRefresh() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {},
 });

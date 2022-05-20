@@ -1,11 +1,19 @@
 <van-overlay show="{{visible}}" bind:click='hide'>
-  <view class="dialog" catchtap="noop">
-    <i class="close BXicon-close" bindtap="hide"></i>
-    <view class="dialog-content">
-      <view class="title">登录或注册</view>
-      <view class="btn" bindtap="agree">
-        <i class="wechat BXicon-wechat"></i>
-        <text class="txt">微信账号快速登录</text>
+  <view class="dialog-wrapper" catchtap="noop">
+    <i class="close BXicon-close" bindtap="hide" />
+    <view class="dialog">
+      <!-- 提示内容 -->
+      <view class="content">
+        <view class="title">请先登录</view>
+        <view class="info">
+          <mp-icon icon="info" size="24" />
+          <text class="txt">此功能需要登录后才能体验</text>
+        </view>
+      </view>
+      <!-- 按钮 -->
+      <view class="btn-wrapper">
+        <view class="btn cancel" hover-class="tap-hover" hover-stay-time="100" bindtap="onCancel">暂不登录</view>
+        <view class="btn confirm" hover-class="tap-hover" hover-stay-time="100" bindtap="onConfirm">去登录</view>
       </view>
     </view>
   </view>

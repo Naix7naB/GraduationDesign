@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "点歌",
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "推荐歌曲",
   "usingComponents": {
     "SearchBar": "/components/SearchBar/SearchBar",
     "MusicCard": "/components/MusicCard/MusicCard",

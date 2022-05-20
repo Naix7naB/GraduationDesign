@@ -12,8 +12,6 @@ Component({
 
   /* 组件的方法列表 */
   methods: {
-    /* 阻止事件冒泡 */
-    noop() {},
     /* 显示弹窗 */
     show() {
       this.setData({ visible: true });
@@ -22,9 +20,15 @@ Component({
     hide() {
       this.setData({ visible: false });
     },
-    /* 点击登录 */
-    agree() {
-      this.triggerEvent('login');
+    /* 点击取消 */
+    onCancel() {
+      this.triggerEvent('cancel');
     },
+    /* 点击确认 */
+    onConfirm() {
+      this.triggerEvent('confirm');
+    },
+    /* 阻止事件冒泡 */
+    noop() {},
   },
 });

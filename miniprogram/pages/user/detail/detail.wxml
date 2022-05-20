@@ -1,2 +1,12 @@
-<!--pages/user/detail/detail.wxml-->
-<text>pages/user/detail/detail.wxml</text>
+<view class="container">
+  <NavBar showIcon title="{{title}}" />
+  <view class="content">
+    <Personal wx:if="{{isComponent==='personal'}}" />
+    <Point wx:if="{{isComponent==='point'}}" />
+    <Ticket wx:if="{{isComponent==='ticket'}}" />
+    <School wx:elif="{{isComponent==='school'}}" />
+    <About wx:elif="{{isComponent==='about'}}" />
+    <Help wx:elif="{{isComponent==='Help'}}" />
+    <Setting wx:elif="{{isComponent==='setting'}}" />
+  </view>
+</view>

@@ -1,14 +1,15 @@
-.dialog {
+.dialog-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 64%;
-  height: 20%;
+  width: 86%;
+  border-radius: var(--radiusMediumX);
   background: var(--white);
   transform: translate(-50%, -50%);
+  overflow: hidden;
 }
 
-.dialog .close {
+.dialog-wrapper .close {
   position: absolute;
   top: 0;
   right: 0;
@@ -18,37 +19,49 @@
   font-size: var(--fontSizeLarge);
 }
 
-.dialog .dialog-content {
+.dialog-wrapper .dialog .content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 40rpx 52rpx;
+  padding: 40rpx;
 }
 
-.dialog .dialog-content .title {
-  font-weight: 800;
+.dialog-wrapper .dialog .content .title {
+  margin-bottom: 40rpx;
+  font-weight: 600;
+  font-size: var(--fontSizeLargeX);
+}
+
+.dialog-wrapper .dialog .content .info {
+  line-height: 80rpx;
   font-size: var(--fontSizeLarge);
 }
 
-.dialog .dialog-content .btn {
+.dialog-wrapper .dialog .content .info .txt {
+  margin-left: 10rpx;
+}
+
+.dialog-wrapper .dialog .btn-wrapper {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 92rpx;
   line-height: 92rpx;
+  border-top: 1rpx solid var(--blackShadow);
+}
+
+.dialog-wrapper .dialog .btn-wrapper .btn {
+  flex: 1;
   text-align: center;
-  color: var(--white);
-  border-radius: var(--radiusSmallS);
-  background: var(--bgTheme);
+  color: var(--gray);
+  font-size: var(--fontSizeMediumX);
 }
 
-.dialog .dialog-content .btn .wechat {
-  margin-right: 10rpx;
-  vertical-align: -2rpx;
-  font-size: var(--fontSizeLarge);
+.dialog-wrapper .dialog .btn-wrapper .btn:first-child {
+  border-right: 1rpx solid var(--blackShadow);
 }
 
-.dialog .dialog-content .btn .txt {
-  font-size: var(--fontSizeMedium);
+.dialog-wrapper .dialog .btn-wrapper .btn:last-child {
+  color: var(--blue);
 }

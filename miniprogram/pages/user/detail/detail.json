@@ -1,3 +1,13 @@
 {
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "NavBar": "/components/NavBar/NavBar",
+    "Personal": "/components/Personal/Personal",
+    "Point": "/components/Point/Point",
+    "Ticket": "/components/Ticket/Ticket",
+    "School": "/components/School/School",
+    "About": "/components/About/About",
+    "Help": "/components/Help/Help",
+    "Setting": "/components/Setting/Setting"
+  }
 }

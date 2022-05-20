@@ -8,7 +8,7 @@
     bindtap="toSearch"
   />
   <!-- 滚动区 -->
-  <scroll-view scroll-y class="main" style="{{scrollStyle}}">
+  <scroll-view class="main" style="{{scrollStyle}}" scroll-y>
     <MusicCard
       custom-class="music-card"
       wx:for="{{playlistArr}}"
@@ -20,3 +20,4 @@
   <!-- Mini播放器 -->
   <MiniPlayer bind:setState="play" bind:setOrder="add" />
 </view>
+<Dialog id="dialog" bind:cancel="cancel" bind:confirm="confirm" />

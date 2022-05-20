@@ -5,8 +5,8 @@ Page({
   /* 页面的初始数据 */
   data: {},
 
-  /* 展示弹窗 */
-  show(e) {
+  /* 跳转页面 */
+  navigator(e) {
     const { name } = e.detail;
     if (name === 'login') {
       /* 跳转登录页面 */
@@ -21,18 +21,36 @@ Page({
     }
   },
 
+  /* 签到 */
+  sign() {
+    /* 未登录状态 显示弹窗 */
+    if (!this.data.isLogin) return this.dialog.show();
+    console.log('sign', 10);
+    // signText = '已签到'
+  },
+
   /* 点击跳转详细页面 */
   onclick(e) {
-    let targetUrl = '';
-    if (!this.data.isLogin) {
-      /* 未登录状态 跳转登录页面 */
-      targetUrl = '/pages/login/login';
-    } else {
-      /* 登录状态 正常跳转 */
-      const { name } = e.target.dataset;
-      targetUrl = `/pages/user/detail/detail?name=${name}`;
-    }
-    wx.navigateTo({ url: targetUrl });
+    /* 未登录状态 显示弹窗 */
+    if (!this.data.isLogin) return this.dialog.show();
+    /* 登录状态 正常跳转 */
+    const { name } = e.target.dataset;
+    wx.navigateTo({
+      url: `/pages/user/detail/detail?name=${name}`,
+    });
+  },
+
+  /* 取消登录 */
+  cancel() {
+    this.dialog.hide();
+  },
+
+  /* 确认登录 */
+  confirm() {
+    this.dialog.hide();
+    wx.navigateTo({
+      url: '/pages/login/login',
+    });
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -43,6 +61,11 @@ Page({
     });
   },
 
+  /* 生命周期函数--监听页面初次渲染完成 */
+  onReady() {
+    this.dialog = this.selectComponent('#dialog');
+  },
+
   /* 生命周期函数--监听页面卸载 */
   onUnload: function () {
     this.storeBindings.destroyStoreBindings();
@@ -50,7 +73,4 @@ Page({
 
   /* 页面相关事件处理函数--监听用户下拉动作 */
   onPullDownRefresh: function () {},
-
-  /* 页面上拉触底事件的处理函数 */
-  onReachBottom: function () {},
 });

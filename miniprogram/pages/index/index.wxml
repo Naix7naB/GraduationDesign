@@ -18,3 +18,4 @@
     </swiper>
   </view>
 </view>
+<Dialog id="dialog" bind:cancel="cancel" bind:confirm="confirm" />

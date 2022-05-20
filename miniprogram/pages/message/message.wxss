@@ -1,83 +1,53 @@
 .home .title {
-  height: 140rpx;
-  line-height: 150rpx;
-  background: var(--white);
-}
-
-.home .title .txt {
-  padding: 0 40rpx;
+  height: 120rpx;
+  padding: 0 0 20rpx 40rpx;
   font-size: 60rpx;
   font-weight: 200;
   color: var(--blueLight);
+  background: var(--white);
+  border-bottom: 1rpx solid var(--blueLight);
 }
 
-.home .message {
-  position: fixed;
-  top: 140rpx;
-  bottom: 0;
+.home .message-list {
   width: 100%;
-  border: 1rpx solid var(--blueLight);
-  /* background: var(--white); */
-}
-
-.home .message .content {
-  width: 100%;
-  height: 100%;
+  height: calc(100vh - 120rpx);
   overflow: hidden;
 }
 
-.home .message .content .slide-wrapper {
-  width: 100%;
-  height: 200rpx;
+.home .message-list .item {
   margin-bottom: 24rpx;
-}
-
-.home .message .content .item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 20rpx 40rpx;
-  line-height: 40rpx;
   color: var(--black);
   background: var(--white);
 }
 
-.home .message .content .item .icon {
-  position: absolute;
-  top: 20rpx;
-  right: 40rpx;
-  width: 72rpx;
-  height: 36rpx;
-  line-height: 36rpx;
-  text-align: center;
-  font-size: var(--fontSizeSmall);
-  color: var(--white);
-  background: var(--gray);
-  border-radius: var(--radiusSmallS);
+.home .message-list .item .state {
+  padding: 20rpx 0 0 40rpx;
+  color: var(--gray);
+  font-weight: 200;
+  font-size: var(--fontSizeLargeX);
 }
 
-.home .message .content .item .name {
-  font-weight: 600;
-  font-size: var(--fontSizeMediumX);
+.home .message-list .item .content {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 40rpx;
 }
 
-.home .message .content .item .time {
-  font-size: var(--fontSizeSmall);
+.home .message-list .item .content .detail {
+  flex: 1;
+  line-height: 48rpx;
 }
 
-.home .message .content .item .main {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  max-width: 77%;
+.home .message-list .item .content .detail .name {
+  font-size: var(--fontSizeLarge);
+}
+
+.home .message-list .item .content .detail .author {
+  color: var(--gray);
   font-size: var(--fontSizeMedium);
 }
 
-.home .message .empty {
+.home .message-list .empty {
   position: absolute;
   top: 40%;
   left: 50%;

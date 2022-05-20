@@ -28,7 +28,7 @@
       },
       {
         "pagePath": "pages/music/music",
-        "text": "点歌",
+        "text": "推荐",
         "iconPath": "/static/icon/list.png",
         "selectedIconPath": "/static/icon/list-fill.png"
       },
@@ -45,6 +45,9 @@
         "selectedIconPath": "/static/icon/user-fill.png"
       }
     ]
+  },
+  "usingComponents": {
+    "Dialog": "/components/Dialog/Dialog"
   },
   "requiredBackgroundModes": [
     "audio"
