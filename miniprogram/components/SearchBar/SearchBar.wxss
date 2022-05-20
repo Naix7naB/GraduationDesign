@@ -17,19 +17,13 @@
   background: var(--ghostWhite);
 }
 
-.search-bar .input-wrapper .search {
-  font-size: var(--fontSizeLarge);
-}
-
 .search-bar .input-wrapper .input {
   flex: 1;
   height: 100%;
-  line-height: 0;
   padding: 0 20rpx;
   font-size: var(--fontSizeMedium);
 }
 
-.search-bar .input-wrapper .search,
 .search-bar .input-wrapper .placeholder {
   color: var(--gray);
 }

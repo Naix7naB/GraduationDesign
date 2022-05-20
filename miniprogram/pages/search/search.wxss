@@ -5,6 +5,7 @@
   bottom: 0;
   width: 100%;
   overflow: hidden;
+  background: var(--white);
 }
 
 .common {
@@ -38,10 +39,11 @@
 
 .history .tabs .tab {
   display: inline-block;
+  margin: 0 32rpx 24rpx 0;
   padding: 10rpx 32rpx;
   font-size: var(--fontSizeMedium);
   border-radius: var(--radiusLarge);
-  background: var(--white);
+  background: rgba(115, 115, 115, 0.1);
 }
 
 .hot {
@@ -50,14 +52,15 @@
 
 .hot .list .item {
   display: flex;
-  height: 120rpx;
-  padding-top: 20rpx;
   align-items: center;
+  height: 100rpx;
+  padding-top: 20rpx;
 }
 
 .hot .list .item .num {
   width: 80rpx;
   padding-left: 20rpx;
+  color: var(--gray);
 }
 
 .hot .list .item:nth-child(-n + 3) .num {
@@ -71,6 +74,10 @@
   overflow: hidden;
 }
 
+.hot .list .item .detail .name {
+  font-weight: 600;
+}
+
 .hot .list .item .detail .desc {
   color: var(--gray);
   font-size: var(--fontSizeSmall);
@@ -80,7 +87,7 @@
 }
 
 .hot .list .item .count {
-  width: 200rpx;
+  width: 120rpx;
   text-align: right;
   font-size: var(--fontSizeSmall);
   color: var(--gray);
@@ -88,5 +95,24 @@
 
 .result {
   z-index: 99;
-  background: var(--blueLight);
+}
+
+.result .res-list {
+  width: 100%;
+  padding: 20rpx 40rpx;
+}
+
+.result .res-list .res-item {
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #777;
+  font-size: var(--fontSizeMediumX);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.result .res-list .res-item .author {
+  color: var(--gray);
+  font-size: var(--fontSizeSmall);
 }

@@ -1,6 +1,7 @@
 /* 处理作者项 */
 function handleAuthor(item) {
-  var arList = item.ar.map(function (item) {
+  var ar = item.ar || item.artists;
+  var arList = ar.map(function (item) {
     return item.name;
   });
   return arList.join('/');

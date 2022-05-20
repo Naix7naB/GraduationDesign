@@ -34,6 +34,7 @@ export function formatTime(delta) {
 
 /* 处理作者项 */
 export function handleAuthor(item) {
-  const arList = item.ar.map((item) => item.name);
+  const ar = item.ar || item.artists;
+  const arList = ar.map((item) => item.name);
   return arList.join('/');
 }

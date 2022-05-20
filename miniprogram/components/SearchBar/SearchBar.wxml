@@ -1,6 +1,6 @@
 <view class="search-bar search-class">
   <view class="input-wrapper input-class">
-    <i class="search BXicon-search" />
+    <mp-icon icon="search" color="#aaa" />
     <input
       class="input"
       type="text"
@@ -10,6 +10,6 @@
       disabled="{{disabled}}"
       bindinput="input"
     />
-    <i wx:if="{{value.length}}" class="close BXicon-close" bindtap="claer" />
+    <mp-icon wx:if="{{value.length}}" icon="close" bindtap="claer" />
   </view>
 </view>

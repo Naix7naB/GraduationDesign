@@ -1,7 +1,9 @@
+<wxs src="../../utils/index.wxs" module="name" />
 <view class="container">
   <NavBar showIcon title="搜索歌曲" titleColor="#000" navBgColor="#fff" />
-  <SearchBar placeholder="{{defaultKeyword}}" searchWord="{{showKeyword}}" bind:onInput="search" />
+  <SearchBar placeholder="{{defaultKeyword}}" searchWord="{{keyword}}" bind:setRes="setRes" />
   <view class="content">
+    <!-- 内容滚动区 -->
     <scroll-view class="scroll-part" scroll-y>
       <!-- 搜索历史 -->
       <view class="history common">
@@ -11,7 +13,9 @@
         </view>
         <!-- 搜索历史标签 -->
         <view class="tabs">
-          <view class="tab">周杰伦</view>
+          <view class="tab" wx:for="{{historyList}}" wx:key="result" data-idx="{{index}}" mark:name="history" bindtap="onTap">
+            <text>{{item.result}}</text>
+          </view>
         </view>
       </view>
       <!-- 热门搜索 -->
@@ -20,7 +24,7 @@
         <view class="title">热门搜索</view>
         <!-- 热门搜索列表 -->
         <view class="list">
-          <view class="item" wx:for="{{hotList}}" wx:key="index" data-idx="{{index}}" bindtap="onTap">
+          <view class="item" wx:for="{{hotList}}" wx:key="index" data-idx="{{index}}" mark:name="hot" bindtap="onTap">
             <view class="num">{{index+1}}</view>
             <view class="detail">
               <view class="name">{{item.searchWord}}</view>
@@ -31,9 +35,14 @@
         </view>
       </view>
     </scroll-view>
-    <view class="result">
-    
+    <!-- 搜索结果 -->
+    <scroll-view wx:if="{{searchResult.length}}" class="result" scroll-y>
+      <view class="res-list">
+        <view class="res-item" wx:for="{{searchResult}}" wx:key="id" data-idx="{{index}}" bindtap="selectRes">
+          <text class="name">{{item.name}}-</text>
+          <text class="author">{{name.handleAuthor(item)}}</text>
+        </view>
+      </view>
+    </scroll-view>
   </view>
-  </view>
-
 </view>

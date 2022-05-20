@@ -1,3 +1,5 @@
+import { getSearchResult } from '../../service/search';
+
 Component({
   /* 组件的配置项 */
   options: {
@@ -14,7 +16,10 @@ Component({
       type: String,
       value: '',
       observer(word) {
-        this.input(word);
+        this.setData({ value: word });
+        getSearchResult(word).then(({ result }) => {
+          this.triggerEvent('setRes', { res: result.songs });
+        });
       },
     },
     placeholder: {
@@ -35,19 +40,17 @@ Component({
   /* 组件的方法列表 */
   methods: {
     /* 输入内容 */
-    input(content) {
-      let _value = '';
-      if (typeof content === 'object') {
-        _value = content.detail.value;
-      } else {
-        _value = content;
-      }
+    input(e) {
+      const _value = e.detail.value;
       this.setData({ value: _value });
-      this.triggerEvent('onInput', { value: _value });
+      getSearchResult(_value).then(({ result }) => {
+        this.triggerEvent('setRes', { res: result.songs });
+      });
     },
     /* 清空输入内容 */
     claer() {
       this.setData({ value: '' });
+      this.triggerEvent('setRes', { res: [] });
     },
   },
 });
