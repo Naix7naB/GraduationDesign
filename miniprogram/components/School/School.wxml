@@ -1,0 +1,6 @@
+<mp-searchbar id="search-bar" placeholder="请输入学校名称" value="{{keyword}}" bindinput="onInput" bindclear="onClear" />
+<scroll-view class="scroller" style="top:{{_top}}px;" scroll-y>
+  <van-cell-group>
+    <van-cell wx:for="{{list}}" wx:key="index" title="{{item.name}}" data-idx="{{index}}" bind:click="onClick" is-link />
+  </van-cell-group>
+</scroll-view>

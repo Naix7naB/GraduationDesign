@@ -9,12 +9,26 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const { data } = await db
     .collection('province')
-    .where({
-      province: event.province,
+    .field({
+      schools: true,
     })
     .get();
 
+  let result = [];
+  const keyword = event.keyword;
+  data.forEach((item) => {
+    const list = item.schools.filter((school) => {
+      const res = school.name.match(keyword);
+      if (res !== null) {
+        return res;
+      }
+    });
+    if (list.length) {
+      result.push(...list);
+    }
+  });
+
   return {
-    schools: data[0].schools,
+    list: result,
   };
 };

@@ -1,4 +1,8 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "van-cell-group": "/components/vant/cell-group/index",
+    "van-cell": "/components/vant/cell/index"
+  }
 }
