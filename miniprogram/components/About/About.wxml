@@ -1,2 +1,10 @@
-<!--components/About/About.wxml-->
-<text>components/About/About.wxml</text>
+<view class="about">
+  <view class="img">
+    <image src="{{picUrl}}" mode="aspectFit" />
+  </view>
+  <view class="title">
+    <view class="name">点歌服务</view>
+    <view class="version">1.0.0</view>
+  </view>
+  <view class="desc">校园广播站点歌平台</view>
+</view>

@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "van-popup": "/components/vant/popup/index",
+    "mp-uploader": "weui-miniprogram/uploader/uploader"
+  }
 }

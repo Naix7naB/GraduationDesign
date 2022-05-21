@@ -111,7 +111,8 @@ Page({
                   name: 'login',
                   data: {
                     ...userInfo,
-                    openid: this.data.openId,
+                    phone: phone,
+                    openId: this.data.openId,
                   },
                 });
                 wx.showToast({

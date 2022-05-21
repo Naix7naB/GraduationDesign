@@ -7,21 +7,33 @@ const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const { data } = await db
+  const keys = Object.keys(event).filter((key) => key !== 'openId');
+  const newData = {};
+  keys.forEach((k) => (newData[k] = event[k]));
+
+  const { stats } = await db
     .collection('user')
     .where({
       openId: event.openId,
     })
-    .get();
+    .update({
+      data: newData,
+    });
 
-  let type, msg, result;
-  if (!data.length) {
-    msg = '用户未注册';
+  let msg, type, result;
+  if (!stats.updated) {
+    msg = '更新失败';
     type = 'fail';
     result = null;
   } else {
-    msg = '查询成功';
+    msg = '更新成功';
     type = 'success';
+    const { data } = await db
+      .collection('user')
+      .where({
+        openId: event.openId,
+      })
+      .get();
     const { phone, avatarUrl, nickName, gender, school, point, userType } = data[0];
     result = { phone, avatarUrl, nickName, gender, school, point, userType };
   }
@@ -29,6 +41,6 @@ exports.main = async (event, context) => {
   return {
     msg,
     type,
-    userInfo: result,
+    data: result,
   };
 };

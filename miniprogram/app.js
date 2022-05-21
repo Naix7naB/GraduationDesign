@@ -33,7 +33,7 @@ App({
     /* 查询用户在数据库是否存在 */
     wx.cloud.callFunction({
       name: 'queryUser',
-      data: { openid: id },
+      data: { openId: id },
       success: ({ result }) => {
         if (!result.userInfo) return;
         /* 用户之前登录过 */

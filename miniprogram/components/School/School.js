@@ -1,6 +1,11 @@
-import storage from '../../utils/storage';
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../utils/store';
+
+const app = getApp();
 
 Component({
+  behaviors: [storeBindingsBehavior],
+
   /* 组件的选项配置 */
   options: {
     addGlobalClass: true,
@@ -15,6 +20,13 @@ Component({
     _top: 0,
     keyword: '',
     list: [],
+    openId: app.globalData.openId,
+  },
+
+  /* store */
+  storeBindings: {
+    store,
+    actions: ['setUserInfo'],
   },
 
   /* 组件的方法列表 */
@@ -42,14 +54,39 @@ Component({
     onClick(e) {
       const { idx } = e.currentTarget.dataset;
       const school = this.data.list[idx];
+      /* 确认弹窗 */
       wx.showModal({
         content: `是否选择${school.name}`,
-        success(res) {
+        success: (res) => {
           if (res.cancel) return;
-          storage.setLocal('_school_', school);
-          wx.reLaunch({
-            url: '/pages/user/user',
-          });
+          /* 更新数据库信息 */
+          wx.cloud
+            .callFunction({
+              name: 'updateUserInfo',
+              data: {
+                openId: this.data.openId,
+                school: school.name,
+              },
+            })
+            .then(({ result }) => {
+              if (!result.data) {
+                wx.showToast({
+                  icon: 'none',
+                  title: '选择失败',
+                });
+              } else {
+                /* 更新本地信息 */
+                this.setUserInfo(result.data);
+                wx.reLaunch({
+                  url: '/pages/user/user',
+                  success() {
+                    wx.showToast({
+                      title: '选择成功',
+                    });
+                  },
+                });
+              }
+            });
         },
       });
     },

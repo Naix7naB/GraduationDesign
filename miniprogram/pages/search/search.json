@@ -1,7 +1,6 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar",
     "SearchBar": "/components/SearchBar/SearchBar",
     "mp-icon": "weui-miniprogram/icon/icon"
   }

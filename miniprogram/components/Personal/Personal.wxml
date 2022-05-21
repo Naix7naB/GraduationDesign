@@ -1,2 +1,101 @@
-<!--components/Personal/Personal.wxml-->
-<text>components/Personal/Personal.wxml</text>
+<wxs src="../../utils/index.wxs" module="user" />
+<form class="personal form" bindsubmit="onSubmit">
+  <!-- 表单内容 -->
+  <view class="cell-group">
+    <!-- 头像 -->
+    <view class="avatar" bindtap="show">
+      <image src="{{tempFile || userInfo.avatarUrl}}" mode="aspectFit" />
+    </view>
+    <!-- 姓名 -->
+    <label class="cell" for="username">
+      <view class="title">姓名</view>
+      <input
+        class="input"
+        type="text"
+        name="username"
+        value="{{userInfo.nickName}}"
+      />
+    </label>
+    <!-- 性别 -->
+    <view class="cell">
+      <view class="title">性别</view>
+      <radio-group bindchange="onChange">
+        <label class="radio" for="radio_1">
+          <radio
+            name="radio_1"
+            value="{{0}}"
+            checked="{{userInfo.gender === 0}}"
+            color="var(--blueLight)"
+          />
+          <text class="txt">未知</text>
+        </label>
+        <label class="radio" for="radio_2">
+          <radio
+            name="radio_2"
+            value="{{1}}"
+            checked="{{userInfo.gender === 1}}"
+            color="var(--blueLight)"
+          />
+          <text class="txt">男</text>
+        </label>
+        <label class="radio" for="radio_3">
+          <radio
+            name="radio_3"
+            value="{{2}}"
+            checked="{{userInfo.gender === 2}}"
+            color="var(--blueLight)"
+          />
+          <text class="txt">女</text>
+        </label>
+      </radio-group>
+    </view>
+    <!-- 学校 -->
+    <label class="cell" for="school">
+      <view class="title">学校</view>
+      <input
+        disabled
+        class="input"
+        type="text"
+        name="school"
+        value="{{userInfo.school}}"
+      />
+    </label>
+    <!-- 手机号码 -->
+    <label class="cell" for="phone">
+      <view class="title">手机号</view>
+      <input
+        disabled
+        class="input"
+        type="text"
+        name="phone"
+        value="{{user.handlePhone(userInfo.phone)}}"
+      />
+    </label> 
+  </view>
+  <!-- 提交按钮 -->
+  <button
+    class="submit disabled"
+    hover-class="submit-hover"
+    hover-stay-time="100"
+    form-type="submit"
+  >
+    提交
+  </button>
+  <!-- 上传图片 -->
+  <van-popup round custom-class="custom-popup" show="{{visible}}" position="bottom" bind:close="hide">
+    <!-- 工具栏 -->
+    <view class="toolbar">
+      <text class="cancel" bindtap="onCancel">取消</text>
+      <text class="confirm" bindtap="onConfirm">确定</text>
+    </view>
+    <mp-uploader
+      title="选择图片"
+      boolean="{{true}}"
+      files="{{files}}"
+      size-type="{{['original','compressed']}}"
+      source-type="{{['album','camera']}}"
+      bindselect="onSelect"
+      bindcancel="cancelSelect"
+    />
+  </van-popup>
+</form>

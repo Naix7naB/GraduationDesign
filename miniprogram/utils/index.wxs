@@ -7,6 +7,16 @@ function handleAuthor(item) {
   return arList.join('/');
 }
 
+
+/* 处理手机号码保密 */
+function handlePhone(phone) {
+  if (!phone) return;
+  var phoneStr = phone.toString();
+  var reg = getRegExp('(\d{3})\d{6}(\d{2})');
+  return phoneStr.replace(reg, '$1******$2');
+}
+
 module.exports = {
   handleAuthor: handleAuthor,
+  handlePhone: handlePhone,
 };

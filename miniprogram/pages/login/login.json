@@ -1,7 +1,6 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "NavBar": "/components/NavBar/NavBar",
     "van-field": "/components/vant/field/index",
     "van-button": "/components/vant/button/index"
   }

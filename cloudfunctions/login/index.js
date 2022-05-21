@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
   const res = await db
     .collection('user')
     .where({
-      openid: event.openid,
+      openId: event.openId,
     })
     .get();
 
@@ -20,22 +20,26 @@ exports.main = async (event, context) => {
       /* 新增用户信息 */
       const { _id } = await db.collection('user').add({
         data: {
-          openid: event.openid,
+          openId: event.openId,
+          phone: event.phone,
+          avatarUrl: event.avatarUrl,
           nickName: event.nickName,
           /* gender 0:未知 1:男性 2:女性 */
           gender: event.gender,
-          avatarUrl: event.avatarUrl,
+          school: '',
           point: 0,
-          createTime: new Date(),
           userType: 0,
+          createTime: new Date(),
         },
       });
       /* 查询并返回用户信息 */
       const res = await db.collection('user').doc(_id).get();
       data = {
+        phone: res.data.phone,
+        avatarUrl: res.data.avatarUrl,
         nickName: res.data.nickName,
         gender: res.data.gender,
-        avatarUrl: res.data.avatarUrl,
+        school: res.data.school,
         point: res.data.point,
         userType: res.data.userType,
       };
@@ -48,9 +52,11 @@ exports.main = async (event, context) => {
     }
   } else {
     data = {
+      phone: res.data[0].phone,
+      avatarUrl: res.data[0].avatarUrl,
       nickName: res.data[0].nickName,
       gender: res.data[0].gender,
-      avatarUrl: res.data[0].avatarUrl,
+      school: res.data[0].school,
       point: res.data[0].point,
       userType: res.data[0].userType,
     };

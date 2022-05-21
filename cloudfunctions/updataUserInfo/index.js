@@ -7,8 +7,14 @@ const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  // const res = await wx.getUserProfile({ desc: 'desc' });
+  console.log(event);
+  // db.collection('user')
+  //   .where({
+  //     openId: event.openId,
+  //   })
+  //   .update();
+
   return {
-    test: res,
+    event,
   };
 };

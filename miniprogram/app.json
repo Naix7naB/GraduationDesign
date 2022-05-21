@@ -47,6 +47,7 @@
     ]
   },
   "usingComponents": {
+    "NavBar": "/components/NavBar/NavBar",
     "Dialog": "/components/Dialog/Dialog"
   },
   "requiredBackgroundModes": [

@@ -1,1 +1,29 @@
-/* components/About/About.wxss */
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 40rpx;
+  background: var(--white);
+}
+
+.about .img {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.about .title {
+  line-height: 72rpx;
+  margin-bottom: 60rpx;
+  text-align: center;
+  font-size: var(--fontSizeLargeX);
+}
+
+.about .title .version {
+  font-size: var(--fontSizeLarge);
+}
+
+.about .desc {
+  font-size: var(--fontSizeMedium);
+}

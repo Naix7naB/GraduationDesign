@@ -1,12 +1,9 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from '../../utils/store';
-import storage from '../../utils/storage';
 
 Page({
   /* 页面的初始数据 */
-  data: {
-    schoolName: '',
-  },
+  data: {},
 
   /* 跳转页面 */
   navigator(e) {
@@ -62,9 +59,6 @@ Page({
       store,
       fields: ['isLogin', 'userInfo'],
     });
-    const school = storage.getLocal('_school_', null);
-    const name = school.name ? school.name : '学校名称';
-    this.setData({ schoolName: name });
   },
 
   /* 生命周期函数--监听页面初次渲染完成 */
