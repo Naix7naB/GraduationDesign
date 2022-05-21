@@ -11,6 +11,8 @@ exports.main = async (event, context) => {
   const newData = {};
   keys.forEach((k) => (newData[k] = event[k]));
 
+  delete newData.userInfo;
+
   const { stats } = await db
     .collection('user')
     .where({
