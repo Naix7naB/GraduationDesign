@@ -3,6 +3,7 @@ import { observable, action } from 'mobx-miniprogram';
 export const store = observable({
   // 数据字段 (state)
   isLogin: false,
+  isSigned: false,
   userInfo: null,
   musicInfo: null,
   playState: false,
@@ -20,6 +21,10 @@ export const store = observable({
   /* 设置登录状态 */
   setLoginState: action(function (state) {
     this.isLogin = state;
+  }),
+  /* 设置签到状态 */
+  setSignState: action(function (state) {
+    this.isSigned = state;
   }),
   /* 设置用户信息 */
   setUserInfo: action(function (info) {

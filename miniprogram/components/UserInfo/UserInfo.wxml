@@ -11,7 +11,7 @@
     <text class="name">{{userInfo.nickName}}</text>
     <text class="point">积分: {{userInfo.point}}</text>
   </view>
-  <view class="sign" bindtap="sign">
-    <text>签到</text>
+  <view class="sign" bindtap="onSign">
+    <text>{{isSigned?'已签到':'签到'}}</text>
   </view>
 </view>

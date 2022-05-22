@@ -1,6 +1,6 @@
 <scroll-view class="home" scroll-y>
   <!-- 用户信息 -->
-  <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="navigator" />
+  <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="navigator" bind:sign="sign" />
   <!-- 个人中心功能列表 -->
   <van-cell-group custom-class="group" bindtap="onclick">
     <van-cell is-link title="个人中心" data-name="personal" />

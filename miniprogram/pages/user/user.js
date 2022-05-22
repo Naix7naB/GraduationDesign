@@ -1,9 +1,13 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from '../../utils/store';
 
+const app = getApp();
+
 Page({
   /* 页面的初始数据 */
-  data: {},
+  data: {
+    openId: app.globalData.openId,
+  },
 
   /* 跳转页面 */
   navigator(e) {
@@ -22,11 +26,27 @@ Page({
   },
 
   /* 签到 */
-  sign() {
+  sign(e) {
     /* 未登录状态 显示弹窗 */
     if (!this.data.isLogin) return this.dialog.show();
-    console.log('sign', 10);
-    // signText = '已签到'
+    /* 已签到 */
+    if (this.data.isSigned) return;
+    const { point } = e.detail;
+    wx.cloud
+      .callFunction({
+        name: 'updateUserInfo',
+        data: {
+          openId: this.data.openId,
+          point: point + 10,
+        },
+      })
+      .then(() => {
+        wx.showToast({
+          icon: 'none',
+          title: '签到成功',
+        });
+        this.setSignState(true);
+      });
   },
 
   /* 点击跳转详细页面 */
@@ -57,7 +77,8 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['isLogin', 'userInfo'],
+      fields: ['isLogin', 'isSigned', 'userInfo'],
+      actions: ['setSignState'],
     });
   },
 
