@@ -1,4 +1,5 @@
 import { formatTime } from '../../utils/index';
+import storage from '../../utils/storage';
 
 const app = getApp();
 
@@ -38,6 +39,28 @@ Page({
     this.hide();
   },
 
+  /* 跳转消息页面 */
+  toMessage() {
+    wx.reLaunch({
+      url: `/pages/message/message`,
+      success() {
+        wx.showToast({
+          title: '点歌成功',
+        });
+      },
+    });
+  },
+
+  /* 点歌 */
+  async order(info, isPay) {
+    info.isPay = isPay;
+    const { result } = await wx.cloud.callFunction({
+      name: 'submitInfo',
+      data: info,
+    });
+    return result;
+  },
+
   /* 提交点歌信息 */
   submit(e) {
     const info = e.detail.value;
@@ -50,14 +73,32 @@ Page({
       info.openId = app.globalData.openId;
       info.chooseDate = this.data.chooseDate;
       info.submitDate = new Date().getTime();
-      wx.cloud.callFunction({ name: 'submitInfo', data: info }).then(({ result }) => {
-        wx.showToast({
-          icon: 'none',
-          title: result.msg,
-        });
-        if (result.type === 'success') {
-          /* 跳转处理页面 */
-          console.log(result.type);
+      this.order(info, false).then((res) => {
+        if (res.type === 'success') {
+          this.toMessage();
+        } else {
+          wx.showModal({
+            title: `${res.msg}`,
+            content: '是否使用支付/点歌券点歌',
+            success: (res) => {
+              if (res.cancel) return;
+              wx.showModal({
+                title: '确认支付',
+                content: '支付优先使用点歌券',
+                success: (res) => {
+                  if (res.cancel) {
+                    wx.showToast({
+                      icon: 'none',
+                      title: '您已取消支付',
+                    });
+                  } else {
+                    this.order(info, true);
+                    this.toMessage();
+                  }
+                },
+              });
+            },
+          });
         }
       });
     }

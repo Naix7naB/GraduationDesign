@@ -5,7 +5,7 @@
     "pages/message/message",
     "pages/login/login",
     "pages/user/user",
-    "pages/user/detail/detail",
+    "pages/userDetail/userDetail",
     "pages/order/order",
     "pages/search/search"
   ],

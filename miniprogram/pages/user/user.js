@@ -16,7 +16,7 @@ Page({
     } else {
       /* 跳转个人信息页面 */
       wx.navigateTo({
-        url: '/pages/user/detail/detail?name=personal',
+        url: '/pages/userDetail/userDetail?name=personal',
       });
     }
   },
@@ -36,7 +36,7 @@ Page({
     /* 登录状态 正常跳转 */
     const { name } = e.target.dataset;
     wx.navigateTo({
-      url: `/pages/user/detail/detail?name=${name}`,
+      url: `/pages/userDetail/userDetail?name=${name}`,
     });
   },
 

@@ -1,13 +1,13 @@
 <view class="home">
   <view class="title">消息列表</view>
-  <scroll-view wx:if="{{true}}" class="message-list" scroll-y>
+  <scroll-view wx:if="{{isLogin}}" class="message-list" scroll-y>
     <!-- 消息通知 -->
-    <view class="item" wx:for="{{4}}" wx:key="index">
-      <view class="state">未处理</view>
+    <view class="item" wx:for="{{orderInfo}}" wx:key="index">
+      <view class="state">{{item.done?'已处理':'未处理'}}</view>
       <view class="content" hover-class="tap-hover" hover-stay-time="100" bindtap="onTap">
         <view class="detail">
-          <view class="name">七里香</view>
-          <view class="author">周杰伦</view>
+          <view class="name">{{item.song}}</view>
+          <view class="author">{{item.singer}}</view>
         </view>
         <mp-icon icon="arrow" size="14" />
       </view>

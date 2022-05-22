@@ -9,6 +9,7 @@ const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
   const data = {
+    done: false,
     openId: event.openId,
     song: event.song,
     singer: event.singer,
@@ -26,7 +27,7 @@ exports.main = async (event, context) => {
 
   let msg = '';
   let type = '';
-  if (!res.data.length) {
+  if (!res.data.length || event.isPay) {
     /* 该用户第一次点歌 数据库直接添加数据 */
     db.collection('form').add({ data: data });
     msg = '提交成功!';

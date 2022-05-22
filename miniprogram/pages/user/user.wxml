@@ -1,4 +1,4 @@
-<scroll-view class="home" scroll-y refresher-enabled>
+<scroll-view class="home" scroll-y>
   <!-- 用户信息 -->
   <UserInfo isLogin="{{isLogin}}" userInfo="{{userInfo}}" bind:tapEvent="navigator" />
   <!-- 个人中心功能列表 -->
