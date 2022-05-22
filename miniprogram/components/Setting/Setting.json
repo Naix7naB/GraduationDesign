@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "van-cell-group": "/components/vant/cell-group/index",
+    "van-cell": "/components/vant/cell/index"
+  }
 }

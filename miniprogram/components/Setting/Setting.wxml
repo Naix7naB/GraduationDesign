@@ -1,2 +1,7 @@
-<!--components/Setting/Setting.wxml-->
-<text>components/Setting/Setting.wxml</text>
+<view class="setting">
+  <van-cell-group custom-class="cells" border="{{false}}">
+    <van-cell is-link custom-class="cell" title-class="cell-title" title="隐私政策" />
+    <van-cell is-link custom-class="cell" title-class="cell-title" title="权限管理" bindtap="openSetting" />
+  </van-cell-group>
+  <button class="btn" hover-class="logout-hover" hover-stay-time="100" bindtap="logout">退出登录</button>
+</view>

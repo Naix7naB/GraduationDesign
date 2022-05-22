@@ -30,17 +30,20 @@ App({
       });
     }
 
-    /* 查询用户在数据库是否存在 */
-    wx.cloud.callFunction({
-      name: 'queryUser',
-      data: { openId: id },
-      success: ({ result }) => {
-        if (!result.userInfo) return;
-        /* 用户之前登录过 */
-        this.setLoginState(true);
-        this.setUserInfo(result.userInfo);
-      },
-    });
+    const isLogout = storage.getLocal('_isLogout_');
+    if (!isLogout) {
+      /* 查询用户在数据库是否存在 */
+      wx.cloud.callFunction({
+        name: 'queryUser',
+        data: { openId: id },
+        success: ({ result }) => {
+          if (!result.userInfo) return;
+          /* 用户之前登录过 */
+          this.setLoginState(true);
+          this.setUserInfo(result.userInfo);
+        },
+      });
+    }
 
     /* 获取系统信息 */
     const systemInfo = wx.getSystemInfoSync();

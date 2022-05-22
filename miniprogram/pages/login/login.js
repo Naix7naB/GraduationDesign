@@ -83,6 +83,31 @@ Page({
     sendCaptcha(this.data.phone);
   },
 
+  /* 登录成功 */
+  successLogin(data, token) {
+    if (token) {
+      storage.setLocal('_token_', token);
+    }
+    this.setUserInfo(data);
+    this.setLoginState(true);
+    storage.setLocal('_isLogout_', false);
+    /* 跳转个人主页 */
+    wx.reLaunch({
+      url: '/pages/user/user',
+    });
+  },
+
+  /* 登录失败 */
+  failLogin() {
+    this.setLoginState(false);
+    storage.setLocal('_isLogout_', true);
+    /* 授权失败 */
+    wx.showToast({
+      title: '您已拒绝登录',
+      icon: 'none',
+    });
+  },
+
   /* 登录 */
   login() {
     const { phone, captcha, isLegal } = this.data;
@@ -102,41 +127,47 @@ Page({
         } else {
           /* 验证码正确 */
           try {
-            /* 用户微信授权 */
-            wx.getUserProfile({
-              desc: '获取用户信息',
-              success: async ({ userInfo }) => {
-                /* 授权成功 */
-                const { result } = await wx.cloud.callFunction({
-                  name: 'login',
-                  data: {
-                    ...userInfo,
-                    phone: phone,
-                    openId: this.data.openId,
+            // 开发者可以使用 wx.getSetting 获取用户当前的授权状态
+            wx.getSetting().then(({ authSetting }) => {
+              const isAuth = authSetting['scope.userInfo'];
+              if (isAuth) {
+                wx.cloud
+                  .callFunction({
+                    name: 'queryUser',
+                    data: {
+                      openId: this.data.openId,
+                    },
+                  })
+                  .then(({ result }) => {
+                    this.successLogin(result.userInfo);
+                  });
+              } else {
+                /* 用户微信授权 */
+                wx.getUserProfile({
+                  desc: '获取用户信息',
+                  success: async ({ userInfo }) => {
+                    /* 授权成功 */
+                    const { result } = await wx.cloud.callFunction({
+                      name: 'login',
+                      data: {
+                        ...userInfo,
+                        phone: phone,
+                        openId: this.data.openId,
+                      },
+                    });
+                    wx.showToast({
+                      icon: 'none',
+                      title: result.message,
+                    });
+                    const { token } = await loginByCellphone(phone, captcha);
+                    this.successLogin(result.data, token);
+                  },
+                  fail: ({ errMsg }) => {
+                    this.failLogin();
+                    console.error(errMsg);
                   },
                 });
-                wx.showToast({
-                  icon: 'none',
-                  title: result.message,
-                });
-                const { token } = await loginByCellphone(phone, captcha);
-                storage.setLocal('_token_', token);
-                this.setLoginState(true);
-                this.setUserInfo(result.data);
-                /* 跳转个人主页 */
-                wx.reLaunch({
-                  url: '/pages/user/user',
-                });
-              },
-              fail: ({ errMsg }) => {
-                /* 授权失败 */
-                wx.showToast({
-                  title: '您已拒绝登录',
-                  icon: 'none',
-                });
-                this.setLoginState(false);
-                console.error(errMsg);
-              },
+              }
             });
           } catch (err) {
             console.error(err);

@@ -26,6 +26,7 @@ Page({
       store,
       fields: ['isLogin'],
     });
+    if (!this.data.isLogin) return;
     wx.showLoading({
       title: '加载中...',
     });

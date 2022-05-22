@@ -20,14 +20,6 @@
   text-align: center;
 }
 
-.content .cells {
-  overflow: hidden;
-}
-
-.content .cells .cell {
-  font-size: var(--fontSizeMedium);
-}
-
 .content .btn {
   width: 90%;
   margin: 120rpx auto 0;

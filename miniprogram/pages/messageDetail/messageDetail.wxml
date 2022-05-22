@@ -9,26 +9,18 @@
       active-icon="success"
       active-color="#38f"
     />
-    <mp-cells ext-class="cells" title="歌曲名称">
-      <mp-cell>
-        <view class="cell" slot="title">{{detail.song}}</view>
-      </mp-cell>
-    </mp-cells>
-    <mp-cells ext-class="cells" title="歌手名称">
-      <mp-cell>
-        <view class="cell" slot="title">{{detail.singer}}</view>
-      </mp-cell>
-    </mp-cells>
-    <mp-cells ext-class="cells" title="留言">
-      <mp-cell>
-        <view class="cell" slot="title">{{detail.comment}}</view>
-      </mp-cell>
-    </mp-cells>
-    <mp-cells ext-class="cells" title="播放时间">
-      <mp-cell>
-        <view class="cell" slot="title">{{detail.chooseDate}}</view>
-      </mp-cell>
-    </mp-cells>
+    <van-cell-group title="歌曲名称">
+      <van-cell title="{{detail.song}}" />
+    </van-cell-group>
+    <van-cell-group title="歌手名称">
+      <van-cell title="{{detail.singer}}" />
+    </van-cell-group>
+    <van-cell-group title="留言">
+      <van-cell title="{{detail.comment}}" />
+    </van-cell-group>
+    <van-cell-group title="播放时间">
+      <van-cell title="{{detail.chooseDate}}" />
+    </van-cell-group>
     <button
       class="btn"
       hover-class="del-hover"

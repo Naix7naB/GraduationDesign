@@ -3,7 +3,7 @@
   "usingComponents": {
     "NavBar": "/components/NavBar/NavBar",
     "van-steps": "/components/vant/steps/index",
-    "mp-cells": "weui-miniprogram/cells/cells",
-    "mp-cell": "weui-miniprogram/cell/cell"
+    "van-cell-group": "/components/vant/cell-group/index",
+    "van-cell": "/components/vant/cell/index"
   }
 }
