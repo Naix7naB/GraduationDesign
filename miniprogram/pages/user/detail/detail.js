@@ -21,7 +21,7 @@ Page({
       case 'school':
         txt = '选择学校';
         break;
-      case 'help':
+      case 'feedback':
         txt = '反馈与帮助';
         break;
       case 'about':

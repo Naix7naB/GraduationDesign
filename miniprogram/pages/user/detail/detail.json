@@ -6,7 +6,7 @@
     "Ticket": "/components/Ticket/Ticket",
     "School": "/components/School/School",
     "About": "/components/About/About",
-    "Help": "/components/Help/Help",
+    "Feedback": "/components/Feedback/Feedback",
     "Setting": "/components/Setting/Setting"
   }
 }

@@ -74,7 +74,7 @@
   </view>
   <!-- 提交按钮 -->
   <button
-    class="submit disabled"
+    class="submit"
     hover-class="submit-hover"
     hover-stay-time="100"
     form-type="submit"

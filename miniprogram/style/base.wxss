@@ -99,5 +99,9 @@ image {
 }
 
 .tap-hover {
-  background: rgba(115, 115, 115, 0.1);
+  background: rgba(115, 115, 115, 0.1) !important;
+}
+
+.submit-hover {
+  background: rgba(11, 63, 175, 0.7) !important;
 }

@@ -1,0 +1,32 @@
+<view class="feedback">
+  <view class="fb-content">
+    <view class="title">反馈内容：</view>
+    <textarea
+      class="textarea fb"
+      placeholder-class="placeholder p_feedback"
+      placeholder="请输入您需要反馈的内容"
+      bindinput="onInput"
+      data-name="feedback"
+    />
+  </view>
+  <view class="fb-content">
+    <view class="title">联系方式：</view>
+    <textarea
+      class="textarea ct"
+      placeholder-class="placeholder p_contact"
+      placeholder="可以留下您的手机号或邮箱号，方便我们答复。"
+      confirm-type="done"
+      bindinput="onInput"
+      data-name="contact"
+    />
+  </view>
+  <button
+    class="submit"
+    hover-class="submit-hover"
+    hover-stay-time="100"
+    form-type="submit"
+    bindtap="onSubmit"
+  >
+    提交
+  </button>
+</view>

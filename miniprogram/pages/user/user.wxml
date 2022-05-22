@@ -11,7 +11,7 @@
     <van-cell is-link title="选择学校" label="{{userInfo.school ? userInfo.school : '学校名称'}}" data-name="school" />
   </van-cell-group>
   <van-cell-group custom-class="group" bindtap="onclick">
-    <van-cell is-link title="反馈与帮助" data-name="help" />
+    <van-cell is-link title="反馈与帮助" data-name="feedback" />
     <van-cell is-link title="关于" data-name="about" />
     <van-cell is-link title="设置" data-name="setting" />
   </van-cell-group>
