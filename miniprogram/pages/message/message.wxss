@@ -24,7 +24,7 @@
   padding: 20rpx 0 0 40rpx;
   color: var(--gray);
   font-weight: 200;
-  font-size: var(--fontSizeLargeX);
+  font-size: var(--fontSizeLarge);
 }
 
 .home .message-list .item .content {
@@ -39,7 +39,7 @@
 }
 
 .home .message-list .item .content .detail .name {
-  font-size: var(--fontSizeLarge);
+  font-size: var(--fontSizeMediumX);
 }
 
 .home .message-list .item .content .detail .author {

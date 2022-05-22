@@ -1,0 +1,46 @@
+.container .title {
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  padding: 0 0 20rpx 40rpx;
+  font-size: 60rpx;
+  font-weight: 200;
+  color: var(--blueLight);
+  background: var(--white);
+}
+
+.container .content {
+  overflow: hidden;
+}
+
+.content .custom-step {
+  margin-bottom: 40rpx;
+}
+
+.content .custom-step .van-step:nth-child(2) .van-step__title {
+  text-align: center;
+}
+
+.content .cells {
+  overflow: hidden;
+}
+
+.content .cells .cell {
+  font-size: var(--fontSizeMedium);
+}
+
+.content .btn {
+  width: 90%;
+  margin: 120rpx auto 0;
+  color: var(--white);
+  border-radius: var(--radiusLargeX);
+  background: rgba(202, 44, 5, 0.8);
+}
+
+.content .btn,
+.content .btn::after {
+  border: 0;
+}
+
+.del-hover {
+  background: rgba(151, 31, 2, 0.8) !important;
+}

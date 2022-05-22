@@ -6,7 +6,7 @@
 .form .cell-group {
   position: relative;
   width: 90%;
-  height: 52%;
+  height: 760rpx;
   margin-top: 180rpx;
   padding: 60rpx;
   padding-top: 120rpx;

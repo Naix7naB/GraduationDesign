@@ -1,0 +1,41 @@
+<view class="container">
+  <NavBar showIcon title='' navBgColor="#fff" />
+  <view class="title">点歌详情</view>
+  <scroll-view class="content" scroll-y>
+    <van-steps
+      custom-class="custom-step"
+      steps="{{steps}}"
+      active="{{active}}"
+      active-icon="success"
+      active-color="#38f"
+    />
+    <mp-cells ext-class="cells" title="歌曲名称">
+      <mp-cell>
+        <view class="cell" slot="title">{{detail.song}}</view>
+      </mp-cell>
+    </mp-cells>
+    <mp-cells ext-class="cells" title="歌手名称">
+      <mp-cell>
+        <view class="cell" slot="title">{{detail.singer}}</view>
+      </mp-cell>
+    </mp-cells>
+    <mp-cells ext-class="cells" title="留言">
+      <mp-cell>
+        <view class="cell" slot="title">{{detail.comment}}</view>
+      </mp-cell>
+    </mp-cells>
+    <mp-cells ext-class="cells" title="播放时间">
+      <mp-cell>
+        <view class="cell" slot="title">{{detail.chooseDate}}</view>
+      </mp-cell>
+    </mp-cells>
+    <button
+      class="btn"
+      hover-class="del-hover"
+      hover-stay-time="100"
+      bindtap="deleteOrdered"
+    >
+      删除点歌
+    </button>
+  </scroll-view>
+</view>

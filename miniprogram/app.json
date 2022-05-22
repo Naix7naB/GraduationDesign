@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/music/music",
     "pages/message/message",
+    "pages/messageDetail/messageDetail",
     "pages/login/login",
     "pages/user/user",
     "pages/userDetail/userDetail",

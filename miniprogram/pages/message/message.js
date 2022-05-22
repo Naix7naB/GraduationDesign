@@ -13,7 +13,11 @@ Page({
 
   /* 跳转消息详细页面 */
   onTap(e) {
-    console.log(e);
+    const { idx } = e.currentTarget.dataset;
+    const item = this.data.orderInfo[idx];
+    wx.navigateTo({
+      url: `/pages/messageDetail/messageDetail?detail=${JSON.stringify(item)}`,
+    });
   },
 
   /* 生命周期函数--监听页面加载 */

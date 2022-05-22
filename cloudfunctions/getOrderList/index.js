@@ -15,8 +15,8 @@ exports.main = async (event, context) => {
     .get();
 
   const list = data.map((item) => {
-    const { done, song, singer, ordering, ordered, comment, chooseDate } = item;
-    return { done, song, singer, ordering, ordered, comment, chooseDate };
+    const { _id, done, song, singer, ordering, ordered, comment, chooseDate } = item;
+    return { _id, done, song, singer, ordering, ordered, comment, chooseDate };
   });
 
   return {
