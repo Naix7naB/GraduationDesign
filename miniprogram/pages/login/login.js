@@ -127,7 +127,6 @@ Page({
         } else {
           /* 验证码正确 */
           try {
-            // 开发者可以使用 wx.getSetting 获取用户当前的授权状态
             wx.getSetting().then(({ authSetting }) => {
               const isAuth = authSetting['scope.userInfo'];
               if (isAuth) {

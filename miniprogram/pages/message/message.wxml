@@ -1,6 +1,6 @@
 <view class="home">
   <view class="title">消息列表</view>
-  <scroll-view wx:if="{{isLogin}}" class="message-list" scroll-y>
+  <scroll-view wx:if="{{isLogin && orderInfo.length }}" class="message-list" scroll-y>
     <!-- 消息通知 -->
     <view class="item" wx:for="{{orderInfo}}" wx:key="index">
       <view class="state">{{item.done?'已处理':'未处理'}}</view>

@@ -1,5 +1,3 @@
-import { createStoreBindings } from 'mobx-miniprogram-bindings';
-import { store } from '../../utils/store';
 import storage from '../../utils/storage';
 
 const app = getApp();
@@ -8,6 +6,7 @@ Page({
   /* 页面的初始数据 */
   data: {
     openId: app.globalData.openId,
+    isLogin: false,
     orderInfo: [],
   },
 
@@ -22,11 +21,8 @@ Page({
 
   /* 生命周期函数--监听页面加载 */
   onLoad(options) {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ['isLogin'],
-    });
-    if (!this.data.isLogin) return;
+    const isLogout = storage.getLocal('_isLogout_');
+    if (isLogout) return;
     wx.showLoading({
       title: '加载中...',
     });
@@ -38,13 +34,10 @@ Page({
         },
       })
       .then(({ result }) => {
-        this.setData({ orderInfo: result.list });
-        storage.setLocal('_orderInfo_', result.list);
+        const list = result.list.reverse();
+        this.setData({ isLogin: !isLogout, orderInfo: list });
+        storage.setLocal('_orderInfo_', list);
         wx.hideLoading();
       });
-  },
-
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
   },
 });

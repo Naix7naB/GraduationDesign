@@ -41,10 +41,14 @@ Component({
   methods: {
     /* 输入内容 */
     input(e) {
-      const _value = e.detail.value;
+      const _value = e.detail.value.trim();
       this.setData({ value: _value });
       getSearchResult(_value).then(({ result }) => {
-        this.triggerEvent('setRes', { res: result.songs });
+        if (!result) {
+          this.triggerEvent('setRes', { res: null });
+        } else {
+          this.triggerEvent('setRes', { res: result.songs });
+        }
       });
     },
     /* 清空输入内容 */

@@ -33,8 +33,12 @@ Page({
 
   /* 设置搜索结果 */
   setRes(e) {
+    let result = [];
     const _value = e.detail.res;
-    this.setData({ searchResult: _value });
+    if (_value) {
+      result = _value;
+    }
+    this.setData({ searchResult: result });
   },
 
   /* 点击热搜词 */
