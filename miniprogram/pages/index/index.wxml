@@ -6,16 +6,12 @@
     </swiper-item>
   </swiper>
   <!-- 点歌按钮 -->
-  <view class="school">学校名称</view>
+  <view class="school">{{userInfo.school ? userInfo.school : '学校名称'}}</view>
   <button class="btn" bindtap="toOrdering">立即点歌</button>
   <!-- 公告栏 -->
   <view class="announcement">
     <text class="title">公告栏</text>
-    <swiper autoplay interval="3000">
-      <swiper-item class="item">公告内容1</swiper-item>
-      <swiper-item class="item">公告内容2</swiper-item>
-      <swiper-item class="item">公告内容3</swiper-item>
-    </swiper>
+    <view class="item">这是校园广播的公告内容，该小程序用于校园广播点歌</view>
   </view>
 </view>
 <Dialog id="dialog" bind:cancel="cancel" bind:confirm="confirm" />

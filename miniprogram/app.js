@@ -18,7 +18,7 @@ App({
     /* store */
     this.storeBindings = createStoreBindings(this, {
       store,
-      actions: ['setLoginState', 'setPlayState', 'setUserInfo','setMusicInfo', 'setShowPlayer'],
+      actions: ['setLoginState', 'setPlayState', 'setUserInfo', 'setMusicInfo', 'setShowPlayer'],
     });
 
     /* 获取用户openid */
@@ -86,22 +86,24 @@ App({
   /* 设置背景音乐 */
   setBGM: async function (item) {
     const info = {
-      name :item.name,
-      author:  handleAuthor(item),
-      picUrl: item.al.picUrl
-    }
+      name: item.name,
+      author: handleAuthor(item),
+      picUrl: item.al.picUrl,
+    };
     const { data } = await getMusicUrl(item);
     this.bgm.title = info.name;
     this.bgm.singer = info.author;
     this.bgm.src = data[0].url;
     this.bgm.play();
-    this.setMusicInfo(info)
+    this.setMusicInfo(info);
   },
 
   /* 全局变量 */
   globalData: {
     /* 用户 OPENID */
     openId: '',
+    /* 当前播放歌曲 */
+    curSong: null,
     /* 歌曲播放状态 */
     playState: false,
     /* 展示播放器 */

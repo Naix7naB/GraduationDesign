@@ -16,7 +16,6 @@ Page({
     name: '',
     author: '',
     showDate: '',
-    chooseDate: null,
   },
 
   /* 显示选择器 */
@@ -34,7 +33,6 @@ Page({
     const delta = e.detail.index[0];
     const dateObj = formatTime(delta);
     const showDate = dateObj.date + ' ' + e.detail.value.join('');
-    this.data.chooseDate = dateObj.timestamp;
     this.setData({ showDate });
     this.hide();
   },
@@ -58,20 +56,20 @@ Page({
       name: 'submitInfo',
       data: info,
     });
+    console.log(info, result);
     return result;
   },
 
   /* 提交点歌信息 */
   submit(e) {
     const info = e.detail.value;
-    if (!info.song || !info.singer || !info.ordering || !info.schedule) {
+    if (!info.song || !info.singer || !info.ordering || !info.chooseDate) {
       wx.showToast({
         icon: 'none',
         title: '信息不完整,请重新填写',
       });
     } else {
       info.openId = app.globalData.openId;
-      info.chooseDate = this.data.chooseDate;
       info.submitDate = new Date().getTime();
       this.order(info, false).then((res) => {
         if (res.type === 'success') {

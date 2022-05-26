@@ -35,7 +35,7 @@ Page({
   onLoad: function (options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['isLogin'],
+      fields: ['isLogin','userInfo'],
     });
     const url = storage.getLocal('_defaultPic_', '');
     if (url) {

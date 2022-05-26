@@ -39,8 +39,9 @@ Page({
     /* 未登录状态 显示弹窗 */
     if (!this.data.isLogin) return this.dialog.show();
     const { item } = e.detail;
-    if (this.data.song === item) return;
-    this.data.song = item;
+    const curSong = app.globalData.curSong;
+    if (item === curSong) return;
+    app.globalData.curSong = item;
     await app.setBGM(item);
   },
 
@@ -60,7 +61,7 @@ Page({
       success: (res) => {
         if (res.cancel) return;
         /* 跳转点歌页面 */
-        const song = this.data.song;
+        const song = app.globalData.curSong;
         wx.navigateTo({
           url: `/pages/order/order?name=${song.name}&author=${handleAuthor(song)}`,
         });

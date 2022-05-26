@@ -13,7 +13,7 @@
       <van-field label="点歌人" name="ordering" placeholder="点歌的人的名字" required />
       <van-field label="点给谁" name="ordered" placeholder="被点歌人的名字" />
       <van-field label="留言" name="comment" type="textarea" placeholder="写下你点歌的故事吧" autosize />
-      <van-field label="时间" name="schedule" value="{{showDate}}" placeholder="请选择时间" bindtap="show" required readonly is-link />
+      <van-field label="时间" name="chooseDate" value="{{showDate}}" placeholder="请选择时间" bindtap="show" required readonly is-link />
       <van-field label="注意" value="有星号为必填项，名字最好是真实姓名" readonly />
       <button class="submit" form-type="submit">提交</button>
     </form>

@@ -1,5 +1,4 @@
 import { getDefaulKeyword, getHotList } from '../../service/search';
-import { getMusicDetail } from '../../service/toplist';
 import { handleAuthor } from '../../utils/index';
 import storage from '../../utils/storage';
 
@@ -63,7 +62,7 @@ Page({
   clear() {
     wx.showModal({
       content: '确定要清空搜索历史吗？',
-      success(res) {
+      success: (res) => {
         if (res.cancel) return;
         this.setData({ historyList: [] });
         storage.setLocal('_searchHistory_', []);
@@ -88,6 +87,7 @@ Page({
     }
     this.setData({ historyList: list });
     storage.setLocal('_searchHistory_', list);
+    app.globalData.curSong = curItem;
     app.setBGM(curItem);
   },
 

@@ -58,6 +58,7 @@ Component({
       return new Promise((resolve) => {
         if (!word) return resolve(null);
         getSearchResult(word).then(async ({ result }) => {
+          if (!result.songs) return resolve([]);
           const { songs } = await getMusicDetail(result.songs);
           resolve(songs);
         });

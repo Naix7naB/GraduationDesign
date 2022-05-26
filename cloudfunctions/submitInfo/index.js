@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
     ordering: event.ordering,
     ordered: event.ordered,
     comment: event.comment,
-    chooseDate: new Date(event.chooseDate),
+    chooseDate: event.chooseDate,
     submitDate: new Date(event.submitDate),
   };
 
