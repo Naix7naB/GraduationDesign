@@ -1,7 +1,9 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from '../../utils/store';
-import { getAllPlaylist, getMusicUrl } from '../../service/toplist';
+import { getAllPlaylist } from '../../service/toplist';
 import { handleAuthor } from '../../utils/index';
+
+const app = getApp();
 
 Page({
   /* 页面的初始数据 */
@@ -33,43 +35,32 @@ Page({
   },
 
   /* 点击歌曲 */
-  selectItem(e) {
+  async selectItem(e) {
     /* 未登录状态 显示弹窗 */
     if (!this.data.isLogin) return this.dialog.show();
     const { item } = e.detail;
     if (this.data.song === item) return;
-    const info = {
-      name: item.name,
-      author: handleAuthor(item),
-      picUrl: item.al.picUrl,
-    };
-    getMusicUrl(item).then(({ data }) => {
-      this.bgm.title = info.name;
-      this.bgm.singer = info.author;
-      this.bgm.src = data[0].url;
-      this.bgm.play();
-      this.setMusicInfo(info);
-      this.setData({ song: item });
-    });
+    this.data.song = item;
+    await app.setBGM(item);
   },
 
   /* 播放歌曲 */
   play(e) {
     if (e.detail.state) {
-      this.bgm.play();
+      app.bgm.play();
     } else {
-      this.bgm.pause();
+      app.bgm.pause();
     }
   },
 
   /* 添加点歌 */
   add() {
-    const song = this.data.song;
     wx.showModal({
       content: '是否添加点歌?',
-      success(res) {
+      success: (res) => {
         if (res.cancel) return;
         /* 跳转点歌页面 */
+        const song = this.data.song;
         wx.navigateTo({
           url: `/pages/order/order?name=${song.name}&author=${handleAuthor(song)}`,
         });
@@ -81,35 +72,17 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['musicInfo', 'playState', 'showPlayer', 'scrollStyle', 'isLogin'],
-      actions: ['setMusicInfo', 'setPlayState', 'setShowPlayer'],
+      fields: ['musicInfo', 'scrollStyle', 'isLogin'],
+      actions: ['setMusicInfo'],
     });
     getAllPlaylist().then((res) => {
-      const list = res.map((item) => {
-        return {
-          id: item.id,
-          title: item.name,
-          songs: item.tracks.slice(0, 30),
-        };
-      });
-      this.setData({ playlistArr: list });
+      this.setData({ playlistArr: res });
     });
   },
 
   /* 生命周期函数--监听页面初次渲染完成 */
   onReady() {
     this.dialog = this.selectComponent('#dialog');
-    this.bgm = wx.getBackgroundAudioManager();
-    this.bgm.onPlay(() => {
-      this.setPlayState(true);
-      this.setShowPlayer(true);
-    });
-    this.bgm.onPause(() => {
-      this.setPlayState(false);
-    });
-    this.bgm.onEnded(() => {
-      this.setShowPlayer(false);
-    });
   },
 
   /* 生命周期函数--监听页面卸载 */

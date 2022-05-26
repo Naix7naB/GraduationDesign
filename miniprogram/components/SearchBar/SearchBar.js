@@ -1,4 +1,5 @@
 import { getSearchResult } from '../../service/search';
+import { getMusicDetail } from '../../service/toplist';
 
 Component({
   /* 组件的配置项 */
@@ -17,8 +18,8 @@ Component({
       value: '',
       observer(word) {
         this.setData({ value: word });
-        getSearchResult(word).then(({ result }) => {
-          this.triggerEvent('setRes', { res: result.songs });
+        this.searchMusic(word).then((res) => {
+          this.triggerEvent('setRes', { res });
         });
       },
     },
@@ -43,18 +44,24 @@ Component({
     input(e) {
       const _value = e.detail.value.trim();
       this.setData({ value: _value });
-      getSearchResult(_value).then(({ result }) => {
-        if (!result) {
-          this.triggerEvent('setRes', { res: null });
-        } else {
-          this.triggerEvent('setRes', { res: result.songs });
-        }
+      this.searchMusic(_value).then((res) => {
+        this.triggerEvent('setRes', { res });
       });
     },
     /* 清空输入内容 */
     claer() {
       this.setData({ value: '' });
       this.triggerEvent('setRes', { res: [] });
+    },
+    /* 搜索歌曲 */
+    searchMusic(word) {
+      return new Promise((resolve) => {
+        if (!word) return resolve(null);
+        getSearchResult(word).then(async ({ result }) => {
+          const { songs } = await getMusicDetail(result.songs);
+          resolve(songs);
+        });
+      });
     },
   },
 });

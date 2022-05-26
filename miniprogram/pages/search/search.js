@@ -1,6 +1,9 @@
 import { getDefaulKeyword, getHotList } from '../../service/search';
+import { getMusicDetail } from '../../service/toplist';
 import { handleAuthor } from '../../utils/index';
 import storage from '../../utils/storage';
+
+const app = getApp();
 
 Page({
   /* 页面的初始数据 */
@@ -71,9 +74,9 @@ Page({
   /* 点击搜索结果 */
   selectRes(e) {
     const { idx } = e.currentTarget.dataset;
-    const res = this.data.searchResult[idx];
+    const curItem = this.data.searchResult[idx];
     const list = this.data.historyList;
-    const result = res.name + '-' + handleAuthor(res);
+    const result = curItem.name + '-' + handleAuthor(curItem);
     const curIdx = list.findIndex((item) => item.result === result);
     if (curIdx === -1) {
       list.unshift({ result });
@@ -85,7 +88,7 @@ Page({
     }
     this.setData({ historyList: list });
     storage.setLocal('_searchHistory_', list);
-    console.log(res);
+    app.setBGM(curItem);
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -96,33 +99,6 @@ Page({
   /* 生命周期函数--监听页面初次渲染完成 */
   onReady() {},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
+  /* 生命周期函数--监听页面卸载 */
   onUnload() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {},
 });

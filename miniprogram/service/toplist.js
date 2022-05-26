@@ -2,15 +2,28 @@ import { request } from './base';
 
 const playlistArr = ['飙升榜', '热歌榜', '云音乐说唱榜', '云音乐欧美热歌榜', '云音乐古风榜'];
 
+/* 获取歌曲详细 */
+export function getMusicDetail(item) {
+  const ids = item.map((song) => song.id).join(',');
+  return request('/song/detail', { data: { ids: ids }, type: 'hidden' });
+}
+
 /* 获取排行榜 */
 function getToplist() {
   return request('/toplist');
 }
 
 /* 获取歌单详细 */
-async function getPlaylistDetail(item) {
-  const { playlist } = await request('/playlist/detail', { data: { id: item.id } });
-  return playlist;
+function getPlaylistDetail(item) {
+  return request('/playlist/detail', { data: { id: item.id } }).then(async ({ playlist }) => {
+    const playlistVal = playlist.trackIds.slice(0, 20);
+    const { songs } = await getMusicDetail(playlistVal);
+    return {
+      id: playlist.id,
+      title: playlist.name,
+      songs: songs,
+    };
+  });
 }
 
 /* 获取歌单 */

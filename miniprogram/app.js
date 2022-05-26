@@ -1,5 +1,7 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings';
 import { store } from './utils/store';
+import { getMusicUrl } from './service/toplist';
+import { handleAuthor } from './utils/index';
 import storage from './utils/storage';
 import './miniprogram_npm/weapp-cookie/index';
 
@@ -16,7 +18,7 @@ App({
     /* store */
     this.storeBindings = createStoreBindings(this, {
       store,
-      actions: ['setLoginState', 'setUserInfo'],
+      actions: ['setLoginState', 'setPlayState', 'setUserInfo','setMusicInfo', 'setShowPlayer'],
     });
 
     /* 获取用户openid */
@@ -59,16 +61,51 @@ App({
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.menuTop = menuButtonInfo.top;
     this.globalData.menuRight = screenWidth - menuButtonInfo.right;
+
+    this.bgm = wx.getBackgroundAudioManager();
+    /* 歌曲开始播放时 */
+    this.bgm.onPlay(() => {
+      this.setPlayState(true);
+      this.setShowPlayer(true);
+    });
+    /* 歌曲暂停播放时 */
+    this.bgm.onPause(() => {
+      this.setPlayState(false);
+    });
+    /* 歌曲播放结束时 */
+    this.bgm.onEnded(() => {
+      this.setPlayState(false);
+      this.setShowPlayer(false);
+    });
   },
 
   onUnlauch: function () {
     this.storeBindings.destroyStoreBindings();
   },
 
+  /* 设置背景音乐 */
+  setBGM: async function (item) {
+    const info = {
+      name :item.name,
+      author:  handleAuthor(item),
+      picUrl: item.al.picUrl
+    }
+    const { data } = await getMusicUrl(item);
+    this.bgm.title = info.name;
+    this.bgm.singer = info.author;
+    this.bgm.src = data[0].url;
+    this.bgm.play();
+    this.setMusicInfo(info)
+  },
+
   /* 全局变量 */
   globalData: {
     /* 用户 OPENID */
     openId: '',
+    /* 歌曲播放状态 */
+    playState: false,
+    /* 展示播放器 */
+    showPlayer: false,
     /* 导航栏高度 */
     navHeight: 0,
     /* 胶囊宽度 */

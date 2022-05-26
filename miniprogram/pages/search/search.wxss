@@ -34,16 +34,19 @@
 
 .history .tabs {
   width: 100%;
-  white-space: pre-wrap;
 }
 
 .history .tabs .tab {
   display: inline-block;
+  max-width: 100%;
   margin: 0 32rpx 24rpx 0;
   padding: 10rpx 32rpx;
   font-size: var(--fontSizeMedium);
   border-radius: var(--radiusLarge);
   background: rgba(115, 115, 115, 0.1);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .hot {

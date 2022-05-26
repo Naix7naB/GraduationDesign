@@ -1,12 +1,11 @@
 /* 处理作者项 */
 function handleAuthor(item) {
-  var ar = item.ar || item.artists;
+  var ar = item.ar;
   var arList = ar.map(function (item) {
     return item.name;
   });
   return arList.join('/');
 }
-
 
 /* 处理手机号码保密 */
 function handlePhone(phone) {

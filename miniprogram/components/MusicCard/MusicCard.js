@@ -33,10 +33,9 @@ Component({
         }
         const { songs } = newVal;
         const _list_ = [];
-        for (let i = 0; i < 4; i++) {
-          let start = 3 * i,
-            step = 3 * (i + 1);
-          if (songs.slice(start, step).length < 3) break;
+        for (let i = 0; i < 5; i++) {
+          let start = 4 * i,
+            step = 4 * (i + 1);
           _list_.push(songs.slice(start, step));
         }
         this.setData({

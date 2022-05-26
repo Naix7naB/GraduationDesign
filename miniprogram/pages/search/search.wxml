@@ -13,8 +13,15 @@
         </view>
         <!-- 搜索历史标签 -->
         <view class="tabs">
-          <view class="tab" wx:for="{{historyList}}" wx:key="result" data-idx="{{index}}" mark:name="history" bindtap="onTap">
-            <text>{{item.result}}</text>
+          <view
+            class="tab"
+            wx:for="{{historyList}}"
+            wx:key="result"
+            data-idx="{{index}}"
+            mark:name="history"
+            bindtap="onTap"
+          >
+            {{item.result}}
           </view>
         </view>
       </view>
