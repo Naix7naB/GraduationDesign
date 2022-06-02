@@ -35,7 +35,6 @@ Page({
       })
       .then(({ result }) => {
         const list = result.list.reverse();
-        console.log(result, list);
         this.setData({ isLogin: !isLogout, orderInfo: list });
         storage.setLocal('_orderInfo_', list);
         wx.hideLoading();

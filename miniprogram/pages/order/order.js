@@ -56,7 +56,6 @@ Page({
       name: 'submitInfo',
       data: info,
     });
-    console.log(info, result);
     return result;
   },
 
